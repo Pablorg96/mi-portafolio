@@ -150,11 +150,7 @@ body {
     color: var(--gray-text);
 }
 
-/* Trabajos */
-.trabajos {
-    padding: 120px 40px;
-}
-
+/* Section Header */
 .section-header {
     text-align: center;
     margin-bottom: 80px;
@@ -171,6 +167,169 @@ body {
     color: var(--gray-text);
     max-width: 600px;
     margin: 0 auto;
+}
+
+/* Casos de Estudio Grid */
+.casos-estudio {
+    padding: 120px 40px;
+}
+
+.casos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+}
+
+.caso-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.caso-card:hover {
+    transform: translateY(-5px);
+}
+
+.caso-imagen {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    aspect-ratio: 1;
+    margin-bottom: 25px;
+}
+
+.caso-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.caso-card:hover .caso-imagen img {
+    transform: scale(1.05);
+}
+
+.caso-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.caso-card:hover .caso-overlay {
+    opacity: 1;
+}
+
+.play-btn {
+    width: 60px;
+    height: 60px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--black);
+    transition: all 0.3s ease;
+}
+
+.caso-card:hover .play-btn {
+    transform: scale(1.1);
+}
+
+.caso-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.caso-card p {
+    font-size: 14px;
+    color: var(--gray-text);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow: auto;
+    padding: 20px;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--white);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 1000px;
+    overflow: hidden;
+    animation: slideIn 0.3s ease;
+}
+
+.modal-video {
+    width: 100%;
+    background-color: var(--black);
+    aspect-ratio: 16 / 9;
+}
+
+.modal-video iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.modal-info {
+    padding: 40px;
+}
+
+.modal-info h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.modal-info p {
+    font-size: 15px;
+    color: var(--gray-text);
+    line-height: 1.8;
+}
+
+.close {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--white);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 2001;
+}
+
+.close:hover {
+    color: var(--gray-text);
+}
+
+/* Trabajos */
+.trabajos {
+    padding: 120px 40px;
+    background-color: var(--gray);
 }
 
 .trabajos-grid {
@@ -207,7 +366,6 @@ body {
 /* Servicios */
 .servicios {
     padding: 120px 40px;
-    background-color: var(--gray);
 }
 
 .servicios-grid {
@@ -217,7 +375,7 @@ body {
 }
 
 .servicio-card {
-    background-color: var(--white);
+    background-color: var(--gray);
     padding: 50px;
     border-radius: 8px;
     transition: all 0.3s ease;
@@ -264,6 +422,7 @@ body {
 /* Testimonios */
 .testimonios {
     padding: 120px 40px;
+    background-color: var(--gray);
 }
 
 .testimonios-grid {
@@ -276,6 +435,7 @@ body {
     padding: 40px;
     border: 1px solid var(--gray-border);
     border-radius: 8px;
+    background-color: var(--white);
     transition: all 0.3s ease;
 }
 
@@ -310,7 +470,6 @@ body {
 /* Sobre */
 .sobre {
     padding: 120px 40px;
-    background-color: var(--gray);
 }
 
 .sobre-content {
@@ -347,7 +506,7 @@ body {
 
 .skills-list span {
     padding: 8px 16px;
-    background-color: var(--white);
+    background-color: var(--gray);
     border: 1px solid var(--gray-border);
     border-radius: 4px;
     font-size: 13px;
@@ -358,6 +517,7 @@ body {
 .contacto {
     padding: 120px 40px;
     text-align: center;
+    background-color: var(--gray);
 }
 
 .contacto-content h2 {
@@ -418,6 +578,17 @@ body {
     }
 }
 
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .container {
@@ -450,6 +621,10 @@ body {
         font-size: 32px;
     }
 
+    .casos-grid {
+        grid-template-columns: 1fr;
+    }
+
     .trabajos-grid,
     .servicios-grid,
     .testimonios-grid {
@@ -458,5 +633,92 @@ body {
 
     .clientes-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .modal-content {
+        max-width: 95%;
+    }
+}
+
+/* Logos Carrusel */
+.logos-section {
+    padding: 80px 40px;
+    border-top: 1px solid var(--gray-border);
+    border-bottom: 1px solid var(--gray-border);
+    background-color: var(--white);
+    overflow: hidden;
+}
+
+.logos-label {
+    text-align: center;
+    font-size: 12px;
+    color: var(--gray-text);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+}
+
+.logos-carousel {
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--white);
+}
+
+.logos-track {
+    display: flex;
+    gap: 60px;
+    animation: scrollLogos 30s linear infinite;
+    will-change: transform;
+}
+
+.logo-item {
+    flex-shrink: 0;
+    width: 200px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.logo-item:nth-child(1) { animation-delay: 0.1s; }
+.logo-item:nth-child(2) { animation-delay: 0.2s; }
+.logo-item:nth-child(3) { animation-delay: 0.3s; }
+.logo-item:nth-child(4) { animation-delay: 0.4s; }
+.logo-item:nth-child(5) { animation-delay: 0.5s; }
+.logo-item:nth-child(6) { animation-delay: 0.6s; }
+.logo-item:nth-child(7) { animation-delay: 0.7s; }
+.logo-item:nth-child(8) { animation-delay: 0.8s; }
+
+.logo-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.logo-item:hover img {
+    filter: grayscale(0%);
+}
+
+@keyframes scrollLogos {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

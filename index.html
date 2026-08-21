@@ -13,7 +13,7 @@
             <a href="#" class="logo">Pablo Romero</a>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#trabajos">Trabajos</a></li>
+                <li><a href="#casos">Casos</a></li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
@@ -29,21 +29,106 @@
         </div>
     </section>
 
-    <!-- Clientes -->
-    <section class="clientes">
+    <!-- Logos Carrusel -->
+    <section class="logos-section">
         <div class="container">
-            <p class="clientes-label">He trabajado con</p>
-            <div class="clientes-grid">
-                <div class="cliente-item">MYHIXEL</div>
-                <div class="cliente-item">Atresmedia</div>
-                <div class="cliente-item">Startups</div>
-                <div class="cliente-item">Agencias</div>
+            <p class="logos-label">He trabajado con</p>
+            <div class="logos-carousel">
+                <div class="logos-track">
+                    <div class="logo-item">
+                        <img src="logos/Atresmedia.png" alt="Atresmedia">
+                    </div>
+                    <div class="logo-item">
+                        <img src="logos/MHX-marca-madre-RGB.png" alt="MYHIXEL">
+                    </div>
+                    <div class="logo-item">
+                        <img src="logos/farmacia_pedro_salvador.png" alt="Farmacia Pedro Salvador">
+                    </div>
+                    <div class="logo-item">
+                        <img src="logos/MYKODE_R.png" alt="MYKODE">
+                    </div>
+                    <!-- Duplicados para efecto infinito -->
+                    <div class="logo-item">
+                        <img src="logos/Atresmedia.png" alt="Atresmedia">
+                    </div>
+                    <div class="logo-item">
+                        <img src="logos/MHX-marca-madre-RGB.png" alt="MYHIXEL">
+                    </div>
+                    <div class="logo-item">
+                        <img src="logos/farmacia_pedro_salvador.png" alt="Farmacia Pedro Salvador">
+                    </div>
+                    <div class="logo-item">
+                        <img src="logos/MYKODE_R.png" alt="MYKODE">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Casos de Estudio -->
+    <section id="casos" class="casos-estudio">
+        <div class="container">
+            <div class="section-header">
+                <h2>Casos de Estudio</h2>
+                <p>Proyectos que muestran el resultado de estrategia, creatividad y ejecución integral.</p>
+            </div>
+            
+            <div class="casos-grid">
+                <!-- Caso 1 -->
+                <div class="caso-card" onclick="abrirModal(0)">
+                    <div class="caso-imagen">
+                        <img src="images/myhixel_ring.jpg" alt="MYHIXEL Ring">
+                        <div class="caso-overlay">
+                            <span class="play-btn">▶</span>
+                        </div>
+                    </div>
+                    <h3>MYHIXEL Ring</h3>
+                    <p>Lanzamiento de Producto Kickstarter</p>
+                </div>
+
+                <!-- Caso 2 -->
+                <div class="caso-card" onclick="abrirModal(1)">
+                    <div class="caso-imagen">
+                        <img src="images/myhixel_iii.jpg" alt="MYHIXEL Trainer">
+                        <div class="caso-overlay">
+                            <span class="play-btn">▶</span>
+                        </div>
+                    </div>
+                    <h3>MYHIXEL Trainer</h3>
+                    <p>Campaña Kickstarter Estrella</p>
+                </div>
+
+                <!-- Caso 3 -->
+                <div class="caso-card" onclick="abrirModal(2)">
+                    <div class="caso-imagen">
+                        <img src="images/cuidado_intimo.jpg" alt="Cuidado Íntimo">
+                        <div class="caso-overlay">
+                            <span class="play-btn">▶</span>
+                        </div>
+                    </div>
+                    <h3>Línea Cuidado Íntimo</h3>
+                    <p>Campaña Atresmedia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <div class="modal-video">
+                <iframe id="modalVideo" width="100%" height="600" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="modal-info">
+                <h2 id="modalTitle"></h2>
+                <p id="modalDesc"></p>
+            </div>
+        </div>
+    </div>
+
     <!-- Trabajos -->
-    <section id="trabajos" class="trabajos">
+    <section class="trabajos">
         <div class="container">
             <div class="section-header">
                 <h2>Servicios Principales</h2>
@@ -53,7 +138,7 @@
                 <div class="trabajo-item">
                     <div class="trabajo-image">🎨</div>
                     <h3>UX/UI & Diseño Digital</h3>
-                    <p>Diseño de producto y aplicaciones móviles. Arquitectura de información, flujos, wireframes e interfaces intuitivas que funcionan.</p>
+                    <p>Diseño de producto y aplicaciones móviles. Arquitectica de información, flujos, wireframes e interfaces intuitivas que funcionan.</p>
                 </div>
                 <div class="trabajo-item">
                     <div class="trabajo-image">🎬</div>
