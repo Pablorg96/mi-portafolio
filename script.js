@@ -22,11 +22,11 @@ function abrirModal(index) {
     const modalVideo = document.getElementById("modalVideo");
     const modalTitle = document.getElementById("modalTitle");
     const modalDesc = document.getElementById("modalDesc");
-    
+
     modalVideo.src = `https://www.youtube.com/embed/${caso.video}?autoplay=1`;
     modalTitle.textContent = caso.title;
     modalDesc.textContent = caso.desc;
-    
+
     modal.classList.add("active");
     document.body.style.overflow = "hidden";
 }
@@ -62,4 +62,131 @@ window.addEventListener('scroll', function() {
     } else {
         navbar.style.boxShadow = 'none';
     }
+});
+
+// Necesario para que GSAP reconozca la propiedad "scrollTrigger" en los tweens
+gsap.registerPlugin(ScrollTrigger);
+
+// Efecto hero: fondo blanco -> negro y vídeo encogiéndose ligeramente,
+// todo sincronizado en el mismo tramo de scroll (termina al 40% del scroll del hero)
+const heroVideoTl = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".video-sticky-container",
+        start: "top top",
+        end: "+=40%",
+        scrub: 0.6,
+    }
+});
+
+heroVideoTl
+    .to(".video-sticky-container", {
+        backgroundColor: "#000000",
+        ease: "power2.out"
+    }, 0)
+    .to(".video-wrapper video", {
+        scale: 0.9,
+        borderRadius: "24px",
+        ease: "power2.out"
+    }, 0)
+    .to(".video-wrapper", {
+        paddingLeft: "130px",
+        paddingRight: "130px",
+        ease: "power2.out"
+    }, 0);
+
+// Reveal con blur al hacer scroll (mismo efecto que el titular del Hero),
+// aplicado a: texto de Overview + link, y título/link/tarjetas de Casos de Estudio.
+document.querySelectorAll('.reveal-blur').forEach((el, i) => {
+    const esTarjeta = el.classList.contains('caso-card');
+    const tieneSubrayado = el.querySelector('.highlight-text') !== null;
+
+    gsap.to(el, {
+        opacity: 1,
+        filter: "blur(0px)",
+        y: 0,
+        duration: 1.1,
+        ease: "power2.out",
+        delay: esTarjeta ? (i % 6) * 0.12 : 0,
+        scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+            onEnter: () => {
+                if (tieneSubrayado) {
+                    el._subrayadoTimeout = setTimeout(() => {
+                        el.querySelector('.highlight-text').classList.add("animated");
+                    }, 1100);
+                }
+            },
+            onLeaveBack: () => {
+                if (tieneSubrayado) {
+                    clearTimeout(el._subrayadoTimeout);
+                    el.querySelector('.highlight-text').classList.remove("animated");
+                }
+            }
+        }
+    });
+});
+
+
+// Servicios Interactive - Mouse Follower
+gsap.registerPlugin(ScrollTrigger);
+
+let mouseX = 0;
+let mouseY = 0;
+let activeImage = null;
+
+// Track mouse position globalmente
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    if (activeImage) {
+        // Easing suave con GSAP
+        gsap.to(activeImage, {
+            left: mouseX - 140,
+            top: mouseY - 200,
+            duration: 0.3,
+            ease: "power2.out"
+        });
+    }
+});
+
+// Hover en cada fila de servicio
+document.querySelectorAll('.servicio-row').forEach((row) => {
+    const imageEl = row.querySelector('.servicio-image');
+    const imageSrc = row.getAttribute('data-image');
+    
+    if (imageSrc) {
+        imageEl.style.backgroundImage = `url('${imageSrc}')`;
+    }
+    
+    row.addEventListener('mouseenter', () => {
+        activeImage = imageEl;
+        gsap.to(imageEl, {
+            opacity: 1,
+            duration: 0.3,
+            ease: "power2.out"
+        });
+    });
+    
+    row.addEventListener('mouseleave', () => {
+        activeImage = null;
+        gsap.to(imageEl, {
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.out"
+        });
+    });
+});
+
+// Expandir descripción al hover
+document.querySelectorAll('.servicio-row').forEach((row) => {
+    row.addEventListener('mouseenter', () => {
+        gsap.to(row, {
+            minHeight: "auto",
+            duration: 0.4,
+            ease: "power2.out"
+        });
+    });
 });

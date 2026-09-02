@@ -13,7 +13,7 @@
             <a href="#" class="logo">Pablo Romero</a>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#casos">Proyectos</a></li>
+                <li><a href="#casos">Casos</a></li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
@@ -78,97 +78,17 @@
         </div>
     </section>
 
-    <!-- Overview Section -->
-    <section class="overview-section">
+    <!-- Casos de Estudio -->
+    <section id="casos" class="casos-estudio">
         <div class="container">
-            <div class="overview-wrapper">
-                <h2 class="overview-title">
-                    <span class="overview-words reveal-blur">Trabajo con startups, agencias y empresas para crear</span>
-                    <span class="overview-words reveal-blur">experiencias digitales coherentes:</span>
-                    <span class="overview-words reveal-blur"><span class="highlight-text">diseño, vídeo y tecnología unificados.</span></span>
-                </h2>
-                <a href="#casos" class="overview-link reveal-blur">Ver proyectos destacados →</a>
+            <div class="section-header">
+                <h2>Casos de Estudio</h2>
+                <p>Proyectos que muestran el resultado de estrategia, creatividad y ejecución integral.</p>
             </div>
-        </div>
-    </section>
-
-
-    <!-- Servicios Section -->
-    <section class="servicios-interactive">
-        <div class="container">
-            <h2 class="servicios-title">Servicios</h2>
             
-            <div class="servicios-list">
-                <!-- Servicio 1 -->
-                <div class="servicio-row" data-image="images/uxui.jpg">
-                    <div class="servicio-left">
-                        <h3 class="servicio-nombre">UX/UI & Diseño Digital</h3>
-                    </div>
-                    <div class="servicio-right">
-                        <p class="servicio-tags">Figma, Adobe XD, Prototypes</p>
-                    </div>
-                    <div class="servicio-expand">
-                        <p>Diseño de interfaces intuitivas, sistemas de diseño, wireframes y prototipos interactivos para aplicaciones móviles y plataformas web. Arquitectura de información centrada en el usuario.</p>
-                    </div>
-                    <div class="servicio-image"></div>
-                </div>
-
-                <!-- Servicio 2 -->
-                <div class="servicio-row" data-image="images/audiovisual.jpg">
-                    <div class="servicio-left">
-                        <h3 class="servicio-nombre">Producción Audiovisual</h3>
-                    </div>
-                    <div class="servicio-right">
-                        <p class="servicio-tags">Premiere Pro, After Effects, Dirección</p>
-                    </div>
-                    <div class="servicio-expand">
-                        <p>Concepto, dirección, producción y postproducción completa. Campañas comerciales, content para redes sociales, dirección audiovisual y narrativa visual que comunica y emociona.</p>
-                    </div>
-                    <div class="servicio-image"></div>
-                </div>
-
-                <!-- Servicio 3 -->
-                <div class="servicio-row" data-image="images/branding.jpg">
-                    <div class="servicio-left">
-                        <h3 class="servicio-nombre">Branding & Diseño Gráfico</h3>
-                    </div>
-                    <div class="servicio-right">
-                        <p class="servicio-tags">Identidad Visual, Sistemas de Diseño</p>
-                    </div>
-                    <div class="servicio-expand">
-                        <p>Identidad visual completa, sistemas de diseño, packaging, dirección de arte y comunicación visual. Desde la conceptualización hasta la ejecución final de marca.</p>
-                    </div>
-                    <div class="servicio-image"></div>
-                </div>
-
-                <!-- Servicio 4 -->
-                <div class="servicio-row" data-image="images/community.jpg">
-                    <div class="servicio-left">
-                        <h3 class="servicio-nombre">Community Manager</h3>
-                    </div>
-                    <div class="servicio-right">
-                        <p class="servicio-tags">Copywriting, Analytics, Gestión de Redes</p>
-                    </div>
-                    <div class="servicio-expand">
-                        <p>Gestión integral de redes sociales, creación de contenido estratégico, análisis de métricas y engagement. Community management que conecta marca con audiencia.</p>
-                    </div>
-                    <div class="servicio-image"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Proyectos Destacados -->
-    <section id="proyectos" class="casos-estudio">
-        <div class="container">
-            <div class="casos-header">
-                <h2 class="casos-title reveal-blur">Proyectos destacados</h2>
-                <a href="#contacto" class="casos-link reveal-blur">Ver todos los proyectos <span class="arrow">↗</span></a>
-            </div>
-
             <div class="casos-grid">
                 <!-- Caso 1 -->
-                <div class="caso-card reveal-blur" onclick="abrirModal(0)">
+                <div class="caso-card" onclick="abrirModal(0)">
                     <div class="caso-imagen">
                         <img src="images/myhixel_ring.jpg" alt="MYHIXEL Ring">
                         <div class="caso-overlay">
@@ -180,7 +100,7 @@
                 </div>
 
                 <!-- Caso 2 -->
-                <div class="caso-card reveal-blur" onclick="abrirModal(1)">
+                <div class="caso-card" onclick="abrirModal(1)">
                     <div class="caso-imagen">
                         <img src="images/myhixel_iii.jpg" alt="MYHIXEL Trainer">
                         <div class="caso-overlay">
@@ -192,7 +112,7 @@
                 </div>
 
                 <!-- Caso 3 -->
-                <div class="caso-card reveal-blur" onclick="abrirModal(2)">
+                <div class="caso-card" onclick="abrirModal(2)">
                     <div class="caso-imagen">
                         <img src="images/cuidado_intimo.jpg" alt="Cuidado Íntimo">
                         <div class="caso-overlay">
