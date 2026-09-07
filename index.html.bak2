@@ -283,24 +283,31 @@
         </div>
     </section>
 
-    <!-- About -->
-    <section class="about-section" id="sobre">
-        <div class="container about-grid">
-            <div class="about-col about-col-left">
-                <h2 class="about-hola">¡Hola!</h2>
-                <p class="about-summary reveal-blur">UX/UI Designer, Productor Audiovisual Senior y Diseñador Gráfico basado en Sevilla. Vengo del mundo de la Publicidad y las Relaciones Públicas, con un máster en Diseño Gráfico que me formó para entender cómo comunicar visualmente.</p>
-            </div>
-
-            <div class="about-col about-col-center">
-                <div class="about-photo-tilt reveal-blur">
-                    <div class="about-photo-card">
-                        <img src="images/pablo-romero.png" alt="Pablo Romero">
+    <!-- Sobre mí -->
+    <section class="sobre">
+        <div class="container">
+            <div class="sobre-content">
+                <h2>Sobre mí</h2>
+                <p>Soy UX/UI Designer, Productor Audiovisual Senior y Diseñador Gráfico basado en Sevilla. Vengo del mundo de la Publicidad y las Relaciones Públicas, con un máster en Diseño Gráfico que me formó para entender cómo comunicar visualmente.</p>
+                <p>Hace años descubrí que el diseño, el vídeo y la tecnología no son disciplinas aisladas. Son piezas de un mismo puzzle. Ahora mi trabajo consiste en unirlas para crear experiencias coherentes, con sentido y que generen impacto real.</p>
+                <p>En MYHIXEL he especializado mi experiencia en dirección audiovisual, diseño de producto y campañas 360º. He liderado proyectos con cifras destacadas en Kickstarter (+$2.3M recaudados) y producciones emitidas en Atresmedia. También integro IA generativa en mis procesos para optimizar creatividad sin perder calidad.</p>
+                <p>En paralelo, creo Cromántiko, un proyecto personal donde diseño e ilustro mensajes sociales que se plasman en serigrafía artesanal.</p>
+                <p>Creo que el diseño y el audiovisual no solo venden: comunican, emocionan y cambian cosas. Por eso busco seguir creciendo y trabajar en proyectos que tengan propósito.</p>
+                <div class="skills">
+                    <h3>Herramientas & Tecnologías</h3>
+                    <div class="skills-list">
+                        <span>Figma</span>
+                        <span>Adobe XD</span>
+                        <span>Premiere Pro</span>
+                        <span>After Effects</span>
+                        <span>Photoshop</span>
+                        <span>Illustrator</span>
+                        <span>InDesign</span>
+                        <span>IA Generativa</span>
+                        <span>GA4</span>
+                        <span>Meta Ads</span>
                     </div>
                 </div>
-            </div>
-
-            <div class="about-col about-col-right">
-                <p class="about-detail reveal-blur">Hace años descubrí que el <strong>diseño</strong>, el <strong>vídeo</strong> y la <strong>tecnología</strong> no son disciplinas aisladas: son piezas de un mismo puzzle. En <strong>MYHIXEL</strong> he especializado mi experiencia en <strong>dirección audiovisual</strong>, <strong>diseño de producto</strong> y <strong>campañas 360º</strong>, liderando proyectos con cifras destacadas en Kickstarter (<strong>+$2.3M recaudados</strong>) y producciones emitidas en <strong>Atresmedia</strong>. También integro <strong>IA generativa</strong> en mis procesos para optimizar creatividad sin perder calidad. En paralelo, creo <strong>Cromántiko</strong>, un proyecto personal donde diseño e ilustro mensajes sociales que se plasman en serigrafía artesanal.</p>
             </div>
         </div>
     </section>

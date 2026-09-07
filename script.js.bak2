@@ -242,35 +242,3 @@ document.querySelectorAll('.servicio-row').forEach((row) => {
 
     sections.forEach(section => observer.observe(section));
 })();
-
-
-// About - Efecto Tilt 3D en la foto (sigue el ratón)
-(function () {
-    const tiltEl = document.querySelector('.about-photo-tilt');
-    const card = document.querySelector('.about-photo-card');
-    if (!tiltEl || !card) return;
-
-    const maxTilt = 12; // grados máximos de inclinación
-
-    const setRotateX = gsap.quickTo(card, "rotateX", { duration: 0.5, ease: "power3.out" });
-    const setRotateY = gsap.quickTo(card, "rotateY", { duration: 0.5, ease: "power3.out" });
-    const setScale = gsap.quickTo(card, "scale", { duration: 0.5, ease: "power3.out" });
-
-    tiltEl.addEventListener('mousemove', (e) => {
-        const rect = tiltEl.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const percentX = (x / rect.width) - 0.5;
-        const percentY = (y / rect.height) - 0.5;
-
-        setRotateY(percentX * maxTilt * 2);
-        setRotateX(percentY * -maxTilt * 2);
-        setScale(1.03);
-    });
-
-    tiltEl.addEventListener('mouseleave', () => {
-        setRotateX(0);
-        setRotateY(0);
-        setScale(1);
-    });
-})();
