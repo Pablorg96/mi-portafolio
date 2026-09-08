@@ -292,39 +292,9 @@
             </div>
 
             <div class="about-col about-col-center">
-                <div class="about-photo-tilt">
-                    <div class="about-photo-card flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <img src="images/pablo-romero.png" alt="Pablo Romero">
-                            </div>
-                            <div class="flip-card-back">
-                                <div class="about-photo-badge">
-                                    <svg class="badge-rotate" viewBox="0 0 200 200" width="150" height="150">
-                                        <defs>
-                                            <path id="circlePath" d="M 100,100 m -75,0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0" />
-                                        </defs>
-                                        <circle cx="100" cy="100" r="95" fill="none" stroke="#ECF1EC" stroke-width="1"/>
-                                        <circle cx="100" cy="100" r="58" fill="none" stroke="#ECF1EC" stroke-width="1"/>
-                                        <text font-size="15" letter-spacing="2" fill="#ECF1EC" text-anchor="middle" dominant-baseline="middle">
-                                            <textPath href="#circlePath" startOffset="28%"><tspan dy="4">SCROLL DOWN</tspan></textPath>
-                                        </text>
-                                        <text font-size="15" letter-spacing="2" fill="#ECF1EC" text-anchor="middle" dominant-baseline="middle">
-                                            <textPath href="#circlePath" startOffset="78%"><tspan dy="4">CONTACTA CONMIGO</tspan></textPath>
-                                        </text>
-                                        <text font-size="22" fill="#ECF1EC" text-anchor="middle" dominant-baseline="middle">
-                                            <textPath href="#circlePath" startOffset="6%"><tspan dy="4">✦</tspan></textPath>
-                                        </text>
-                                        <text font-size="22" fill="#ECF1EC" text-anchor="middle" dominant-baseline="middle">
-                                            <textPath href="#circlePath" startOffset="49%"><tspan dy="4">✦</tspan></textPath>
-                                        </text>
-                                    </svg>
-                                    <svg class="badge-arrow" viewBox="0 0 24 24" width="36" height="36" fill="none">
-                                        <path d="M12 4v13M6 12l6 6 6-6" stroke="#ECF1EC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
+                <div class="about-photo-tilt reveal-blur">
+                    <div class="about-photo-card">
+                        <img src="images/pablo-romero.png" alt="Pablo Romero">
                     </div>
                 </div>
             </div>

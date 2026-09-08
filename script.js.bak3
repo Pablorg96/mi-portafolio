@@ -274,23 +274,3 @@ document.querySelectorAll('.servicio-row').forEach((row) => {
         setScale(1);
     });
 })();
-
-
-// Scroll Reveal 3D - IntersectionObserver (tarjeta de la foto en About)
-document.addEventListener('DOMContentLoaded', () => {
-    const tarjeta = document.querySelector('.about-photo-tilt');
-    if (!tarjeta) return;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.2
-    });
-
-    observer.observe(tarjeta);
-});

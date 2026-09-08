@@ -1216,15 +1216,11 @@ body {
 .about-photo-card {
     width: 100%;
     height: 100%;
-}
-
-.flip-card {
-    background-color: transparent;
-    border: none;
-    box-shadow: none;
-    width: 100%;
-    height: 100%;
-    perspective: 1000px;
+    border-radius: 24px;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    will-change: transform;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
 }
 
 .about-photo-card img {
@@ -1290,50 +1286,27 @@ body {
 }
 
 
-/* About - Flip Card 3D: la foto se da la vuelta al hacer hover, revelando el sello */
+/* About - Overlay glassmorphism + badge circular al hacer hover */
 .about-photo-card {
     position: relative;
 }
 
-.flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
-    transform-style: preserve-3d;
-}
-
-.flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-}
-
-.flip-card-front,
-.flip-card-back {
+.about-photo-overlay {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
-}
-
-.flip-card-front img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    pointer-events: none;
-}
-
-.flip-card-back {
-    background-color: #302E2E;
-    transform: rotateY(180deg);
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    background-color: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.about-photo-card:hover .about-photo-overlay {
+    opacity: 1;
 }
 
 .about-photo-badge {
@@ -1365,8 +1338,8 @@ body {
 
 /* About - Ajustes del badge circular (v2) */
 .about-photo-badge text {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-    font-weight: 700;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 600;
 }
 
 

@@ -1216,15 +1216,11 @@ body {
 .about-photo-card {
     width: 100%;
     height: 100%;
-}
-
-.flip-card {
-    background-color: transparent;
-    border: none;
-    box-shadow: none;
-    width: 100%;
-    height: 100%;
-    perspective: 1000px;
+    border-radius: 24px;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    will-change: transform;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
 }
 
 .about-photo-card img {
@@ -1287,95 +1283,4 @@ body {
 .about-photo-tilt.visible {
     opacity: 1;
     transform: perspective(1000px) translateY(0) rotateX(0) rotateY(0);
-}
-
-
-/* About - Flip Card 3D: la foto se da la vuelta al hacer hover, revelando el sello */
-.about-photo-card {
-    position: relative;
-}
-
-.flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
-    transform-style: preserve-3d;
-}
-
-.flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-}
-
-.flip-card-front,
-.flip-card-back {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
-}
-
-.flip-card-front img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    pointer-events: none;
-}
-
-.flip-card-back {
-    background-color: #302E2E;
-    transform: rotateY(180deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.about-photo-badge {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.badge-rotate {
-    position: absolute;
-    top: 0;
-    left: 0;
-    animation: badgeRotate 10s linear infinite;
-}
-
-@keyframes badgeRotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-.badge-arrow {
-    position: relative;
-    z-index: 2;
-}
-
-
-/* About - Ajustes del badge circular (v2) */
-.about-photo-badge text {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-    font-weight: 700;
-}
-
-
-/* About - Flecha flotando (v3) */
-.badge-arrow {
-    animation: floatArrow 2s ease-in-out infinite alternate;
-}
-
-@keyframes floatArrow {
-    from { transform: translateY(-4px); }
-    to { transform: translateY(4px); }
 }

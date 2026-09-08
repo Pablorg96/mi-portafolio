@@ -307,16 +307,16 @@
                                         <circle cx="100" cy="100" r="95" fill="none" stroke="#ECF1EC" stroke-width="1"/>
                                         <circle cx="100" cy="100" r="58" fill="none" stroke="#ECF1EC" stroke-width="1"/>
                                         <text font-size="15" letter-spacing="2" fill="#ECF1EC" text-anchor="middle" dominant-baseline="middle">
-                                            <textPath href="#circlePath" startOffset="28%"><tspan dy="4">SCROLL DOWN</tspan></textPath>
+                                            <textPath href="#circlePath" startOffset="28%"><tspan dy="8">SCROLL DOWN</tspan></textPath>
                                         </text>
                                         <text font-size="15" letter-spacing="2" fill="#ECF1EC" text-anchor="middle" dominant-baseline="middle">
-                                            <textPath href="#circlePath" startOffset="78%"><tspan dy="4">CONTACTA CONMIGO</tspan></textPath>
+                                            <textPath href="#circlePath" startOffset="78%"><tspan dy="8">CONTACTA CONMIGO</tspan></textPath>
                                         </text>
                                         <text font-size="22" fill="#ECF1EC" text-anchor="middle" dominant-baseline="middle">
-                                            <textPath href="#circlePath" startOffset="6%"><tspan dy="4">✦</tspan></textPath>
+                                            <textPath href="#circlePath" startOffset="6%">✦</textPath>
                                         </text>
                                         <text font-size="22" fill="#ECF1EC" text-anchor="middle" dominant-baseline="middle">
-                                            <textPath href="#circlePath" startOffset="49%"><tspan dy="4">✦</tspan></textPath>
+                                            <textPath href="#circlePath" startOffset="49%">✦</textPath>
                                         </text>
                                     </svg>
                                     <svg class="badge-arrow" viewBox="0 0 24 24" width="36" height="36" fill="none">
