@@ -14,6 +14,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -21,6 +22,7 @@ body {
     background-color: var(--white);
     color: var(--black);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 .container {
@@ -72,7 +74,7 @@ body {
     left: 6px;
     height: calc(100% - 12px);
     width: 0;
-    background-color: #E8432C;
+    background-color: #FF6529;
     border-radius: 999px;
     transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
                 width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -1069,19 +1071,9 @@ body {
 }
 
 /* Estado Hover */
-.servicio-row:hover {
-    background-color: var(--black);
-    color: var(--white);
-    padding: 40px;
-    margin: 0 -40px;
-    padding-left: 40px;
-    padding-right: 40px;
-}
 
-.servicio-row:hover .servicio-nombre,
-.servicio-row:hover .servicio-tags {
-    color: var(--white);
-}
+
+
 
 .servicio-expand {
     max-height: 0;
@@ -1095,13 +1087,7 @@ body {
     padding: 0 40px;
 }
 
-.servicio-row:hover .servicio-expand {
-    max-height: 200px;
-    opacity: 1;
-    bottom: 0;
-    position: relative;
-    margin-top: 20px;
-}
+
 
 .servicio-expand p {
     font-size: 14px;
@@ -1125,9 +1111,7 @@ body {
     transition: opacity 0.3s ease;
 }
 
-.servicio-row:hover .servicio-image {
-    opacity: 1;
-}
+
 
 @media (max-width: 768px) {
     .servicios-interactive {
@@ -1378,4 +1362,137 @@ body {
 @keyframes floatArrow {
     from { transform: translateY(-4px); }
     to { transform: translateY(4px); }
+}
+
+
+/* About - la tarjeta de la foto ahora es un enlace a Contacto */
+.about-photo-tilt {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Fix móvil: evitar que el texto de Overview se salga de la pantalla */
+@media (max-width: 768px) {
+    .highlight-text {
+        white-space: normal;
+    }
+
+    .overview-title,
+    .overview-words {
+        max-width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+}
+
+
+/* Servicios interactivos en móvil: al tocar, texto + foto aparecen debajo */
+@media (max-width: 768px) {
+    .servicio-row {
+        cursor: pointer;
+    }
+
+    .servicio-expand {
+        position: static;
+        max-height: 0;
+        opacity: 0;
+        margin-top: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease;
+    }
+
+    .servicio-row.mobile-active {
+        background-color: var(--black);
+        color: var(--white);
+    }
+
+    .servicio-row.mobile-active .servicio-nombre,
+    .servicio-row.mobile-active .servicio-tags {
+        color: var(--white);
+    }
+
+    .servicio-row.mobile-active .servicio-expand {
+        max-height: 600px;
+        opacity: 1;
+        margin-top: 16px;
+    }
+
+    .servicio-image {
+        position: static;
+        display: none;
+        width: 100%;
+        height: 220px;
+        margin-top: 16px;
+        opacity: 1;
+        box-shadow: none;
+    }
+
+    .servicio-row.mobile-active .servicio-image {
+        display: block;
+    }
+}
+
+
+/* Servicios móvil (v2): mostrar la foto completa, sin recortar */
+@media (max-width: 768px) {
+    .servicio-image {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: var(--gray);
+        height: 240px;
+    }
+}
+
+
+/* Servicios móvil (v3): mismo formato vertical (3:4) que en escritorio */
+@media (max-width: 768px) {
+    .servicio-image {
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+        aspect-ratio: 3 / 4;
+        margin: 16px auto 0;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: var(--gray);
+    }
+}
+
+
+/* Estados :hover solo para dispositivos con ratón real (evita el "doble toque" en iOS) */
+@media (hover: hover) and (pointer: fine) {
+.servicio-row:hover {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 40px;
+    margin: 0 -40px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.servicio-row:hover .servicio-nombre,
+.servicio-row:hover .servicio-tags {
+    color: var(--white);
+}
+
+.servicio-row:hover .servicio-expand {
+    max-height: 200px;
+    opacity: 1;
+    bottom: 0;
+    position: relative;
+    margin-top: 20px;
+}
+
+.servicio-row:hover .servicio-image {
+    opacity: 1;
+}
+}
+
+
+/* Servicios móvil (v4): rellenar el marco sin bordes (cover en vez de contain) */
+@media (max-width: 768px) {
+    .servicio-image {
+        background-size: cover;
+    }
 }

@@ -128,9 +128,11 @@ gsap.registerPlugin(ScrollTrigger);
 let mouseX = 0;
 let mouseY = 0;
 let activeImage = null;
+const esDesktop = window.matchMedia('(min-width: 769px)').matches;
 
 // Track mouse position globalmente
 document.addEventListener('mousemove', (e) => {
+    if (!esDesktop) return;
     mouseX = e.clientX;
     mouseY = e.clientY;
     
@@ -155,6 +157,7 @@ document.querySelectorAll('.servicio-row').forEach((row) => {
     }
     
     row.addEventListener('mouseenter', () => {
+        if (!esDesktop) return;
         activeImage = imageEl;
         gsap.to(imageEl, {
             opacity: 1,
@@ -164,6 +167,7 @@ document.querySelectorAll('.servicio-row').forEach((row) => {
     });
     
     row.addEventListener('mouseleave', () => {
+        if (!esDesktop) return;
         activeImage = null;
         gsap.to(imageEl, {
             opacity: 0,
@@ -293,4 +297,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     observer.observe(tarjeta);
+});
+
+
+// Servicios interactivos en móvil: tocar la fila expande texto + foto debajo
+document.querySelectorAll('.servicio-row').forEach((row) => {
+    row.addEventListener('click', () => {
+        row.classList.toggle('mobile-active');
+    });
 });
