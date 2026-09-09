@@ -300,31 +300,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Servicios interactivos en móvil: se abre la fila que tiene el dedo encima
-// mientras te desplazas (sin necesidad de tocar aparte), y se cierra al pasar a la siguiente
-(function () {
-    const filas = document.querySelectorAll('.servicio-row');
-    if (!filas.length) return;
-
-    let filaActiva = null;
-
-    function actualizarPorPosicion(touch) {
-        if (!touch) return;
-        const el = document.elementFromPoint(touch.clientX, touch.clientY);
-        const fila = el ? el.closest('.servicio-row') : null;
-
-        if (fila !== filaActiva) {
-            if (filaActiva) filaActiva.classList.remove('mobile-active');
-            if (fila) fila.classList.add('mobile-active');
-            filaActiva = fila;
-        }
-    }
-
-    document.addEventListener('touchstart', (e) => {
-        actualizarPorPosicion(e.touches[0]);
-    }, { passive: true });
-
-    document.addEventListener('touchmove', (e) => {
-        actualizarPorPosicion(e.touches[0]);
-    }, { passive: true });
-})();
+// Servicios interactivos en móvil: tocar la fila expande texto + foto debajo
+document.querySelectorAll('.servicio-row').forEach((row) => {
+    row.addEventListener('click', () => {
+        row.classList.toggle('mobile-active');
+    });
+});
