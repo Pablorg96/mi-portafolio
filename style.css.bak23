@@ -1496,19 +1496,3 @@ body {
         background-size: cover;
     }
 }
-
-
-/* Servicios móvil: el fondo negro llega hasta los bordes reales de la pantalla */
-@media (max-width: 768px) {
-    .servicio-row.mobile-active {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-        padding-left: 20px;
-        padding-right: 20px;
-        border-radius: 0;
-    }
-}
