@@ -1512,17 +1512,3 @@ body {
         border-radius: 0;
     }
 }
-
-
-/* Servicios móvil: alinear título/subtítulo/texto en el mismo margen,
-   y evitar que el cambio a pantalla completa se "anime" (causaba el
-   efecto de texto agrandándose de golpe) */
-@media (max-width: 768px) {
-    .servicio-expand {
-        padding: 0;
-    }
-
-    .servicio-row.mobile-active {
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-}
