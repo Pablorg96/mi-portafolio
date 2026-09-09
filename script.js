@@ -328,3 +328,81 @@ document.addEventListener('DOMContentLoaded', () => {
         actualizarPorPosicion(e.touches[0]);
     }, { passive: true });
 })();
+
+// Footer: animación de scroll reveal para la marca de agua "GRACIAS"
+// (se activa y desactiva cada vez que entra/sale del viewport)
+(function () {
+    const watermark = document.querySelector('.footer-watermark');
+    if (!watermark) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                watermark.classList.add('visible');
+            } else {
+                watermark.classList.remove('visible');
+            }
+        });
+    }, {
+        threshold: 0.3
+    });
+
+    observer.observe(watermark);
+})();
+
+// Testimonios: Scroll Reveal en cascada con GSAP (título primero, luego cada tarjeta con 0.15s de diferencia)
+gsap.to(".testimonios .reveal-up", {
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    ease: "power2.out",
+    stagger: 0.15,
+    scrollTrigger: {
+        trigger: ".testimonios",
+        start: "top 80%",
+        toggleActions: "play none none reverse"
+    }
+});
+
+// Testimonios: rotación automática con crossfade entre las opiniones
+(function () {
+    const slides = document.querySelectorAll('.testimonio-slide');
+    const dotsContainer = document.querySelector('.testimonio-dots');
+    if (!slides.length || !dotsContainer) return;
+
+    let current = 0;
+    let autoplay;
+
+    // Crea un punto por cada testimonio
+    slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'testimonio-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', `Ver testimonio ${i + 1}`);
+        dot.addEventListener('click', () => {
+            goTo(i);
+            resetAutoplay();
+        });
+        dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.testimonio-dot');
+
+    function goTo(index) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = index;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+    }
+
+    function next() {
+        goTo((current + 1) % slides.length);
+    }
+
+    function resetAutoplay() {
+        clearInterval(autoplay);
+        autoplay = setInterval(next, 5000);
+    }
+
+    resetAutoplay();
+})();

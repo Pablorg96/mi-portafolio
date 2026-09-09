@@ -263,23 +263,37 @@
     <section class="testimonios">
         <div class="container">
             <div class="section-header">
-                <h2>Lo que dicen mis clientes</h2>
+                <h2 class="reveal-up">Lo que dicen mis clientes</h2>
             </div>
-            <div class="testimonios-grid">
-                <div class="testimonio-card">
+
+            <div class="testimonio-card reveal-up">
+                <div class="testimonio-aurora"></div>
+
+                <div class="testimonio-slide active" data-index="0">
+                    <div class="testimonio-stars">★★★★★</div>
                     <p class="testimonio-text">"Pablo entiende perfectamente cómo conectar diseño y audiovisual. Su visión 360º transforma proyectos ordinarios en experiencias memorables."</p>
                     <div class="testimonio-autor">
-                        <strong>Cliente</strong>
-                        <span>Proyecto</span>
+                        <div class="testimonio-avatar">C</div>
+                        <div class="testimonio-autor-info">
+                            <strong>Cliente</strong>
+                            <span>Proyecto</span>
+                        </div>
                     </div>
                 </div>
-                <div class="testimonio-card">
+
+                <div class="testimonio-slide" data-index="1">
+                    <div class="testimonio-stars">★★★★★</div>
                     <p class="testimonio-text">"Trabajar con alguien que domina tantas disciplinas es raro. Pablo no solo ejecuta, entiende la estrategia detrás de cada proyecto."</p>
                     <div class="testimonio-autor">
-                        <strong>Cliente</strong>
-                        <span>Proyecto</span>
+                        <div class="testimonio-avatar">C</div>
+                        <div class="testimonio-autor-info">
+                            <strong>Cliente</strong>
+                            <span>Proyecto</span>
+                        </div>
                     </div>
                 </div>
+
+                <div class="testimonio-dots"></div>
             </div>
         </div>
     </section>
@@ -338,22 +352,67 @@
 
     <!-- Contacto -->
     <section id="contacto" class="contacto">
-        <div class="container">
-            <div class="contacto-content">
-                <h2>Hablemos</h2>
-                <p>¿Tienes un proyecto con propósito? Me encantaría escucharte y explorar cómo podemos trabajar juntos.</p>
-                <div class="contacto-links">
-                    <a href="mailto:pablorg16@gmail.com" class="contacto-btn">Email</a>
-                    <a href="https://www.linkedin.com/in/pablo-romero-garduno/" class="contacto-btn" target="_blank">LinkedIn</a>
-                    <a href="https://www.instagram.com/pablorg96/" class="contacto-btn" target="_blank">Instagram</a>
+        <div class="container contacto-grid">
+            <div class="contacto-info">
+                <h2 class="reveal-blur">Hablemos.</h2>
+                <p class="reveal-blur">¿Tienes un proyecto o necesitas ayuda? Rellena el formulario y te responderé lo antes posible.</p>
+                <div class="contacto-socials">
+                    <a href="https://www.instagram.com/pablorg96/" class="social-icon" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/pablo-romero-garduno/" class="social-icon" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H2v12h4V9z"/><path d="M6 4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" fill="currentColor" stroke="none"/><path d="M10 9h4v2s1-2 4-2 5 2 5 6v6h-4v-6c0-1.5-.5-3-2.5-3S13 15 13 16.5V21h-4V9z"/></svg>
+                    </a>
                 </div>
             </div>
+
+            <form class="contacto-form reveal-blur" action="https://formsubmit.co/pablorg16@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="Nuevo mensaje desde el portafolio">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="text" name="_honey" style="display:none">
+
+                <label for="contactoNombre">Nombre</label>
+                <input type="text" id="contactoNombre" name="Nombre" placeholder="Tu nombre" required>
+
+                <label for="contactoEmail">Email</label>
+                <input type="email" id="contactoEmail" name="Email" placeholder="tu@email.com" required>
+
+                <label for="contactoProyecto">Tu proyecto</label>
+                <textarea id="contactoProyecto" name="Proyecto" placeholder="Cuéntame en qué estás pensando" rows="5" required></textarea>
+
+                <button type="submit" class="contacto-submit">Enviar</button>
+            </form>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
+        <div class="footer-watermark" aria-hidden="true">GRACIAS</div>
+
+        <div class="footer-content">
+            <div class="footer-col footer-headline">
+                <h2>Escalando ideas<br>para su crecimiento.</h2>
+            </div>
+
+            <div class="footer-col footer-links">
+                <p class="footer-label">/Enlaces rápidos</p>
+                <div class="footer-pills">
+                    <a href="#inicio" class="footer-pill">Inicio</a>
+                    <a href="#servicios" class="footer-pill">Servicios</a>
+                    <a href="#proyectos" class="footer-pill">Proyectos</a>
+                    <a href="#sobre" class="footer-pill">Sobre mí</a>
+                    <a href="#contacto" class="footer-pill">Contacto</a>
+                </div>
+            </div>
+
+            <div class="footer-col footer-contact">
+                <p class="footer-label">/Contacto</p>
+                <a href="mailto:pablorg16@gmail.com" class="footer-email">pablorg16@gmail.com</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
             <p>&copy; 2026 Pablo Romero. Todos los derechos reservados.</p>
         </div>
     </footer>
