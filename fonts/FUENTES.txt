@@ -1,0 +1,8 @@
+Fuentes alojadas en esta web (todas con licencia SIL Open Font License 1.1)
+
+- DM Mono      · Copyright 2020 The DM Mono Project Authors     · licencia: OFL-DMMono.txt
+- Caveat       · Copyright 2014 The Caveat Project Authors      · licencia: OFL-Caveat.txt
+- Instrument Sans · Copyright 2022 The Instrument Sans Project Authors · licencia: OFL-InstrumentSans.txt
+
+Origen: Google Fonts (https://fonts.google.com). Se sirven desde esta misma web
+para no enviar datos de los visitantes a terceros. Solo se incluye el subconjunto latino.
