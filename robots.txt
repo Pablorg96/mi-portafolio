@@ -1,2 +1,5 @@
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /gracias.html
+
+Sitemap: https://pablorg96.github.io/mi-portafolio/sitemap.xml
