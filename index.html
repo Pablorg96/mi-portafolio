@@ -30,12 +30,17 @@
     <link rel="stylesheet" href="style.css?v=11">
     <link rel="preload" href="fonts/DMMono-400.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="fonts/fonts.css?v=1">
-    <link rel="stylesheet" href="canvas.css?v=36">
+    <link rel="stylesheet" href="canvas.css?v=47">
 </head>
 <body>
     <!-- Navbar (Pill Navigation) -->
     <nav class="navbar">
-        <a href="#inicio" class="logo-pill">Pablo Romero</a>
+        <a href="#inicio" class="logo-pill sticker-logo" aria-label="Pablo Romero, inicio">
+            <span class="stk" aria-hidden="true">
+                <span class="stk-body"><img src="images/pegatina.webp" alt="" width="480" height="640" decoding="async"><span class="stk-rainbow"></span><span class="stk-shine"></span></span>
+                <span class="stk-flap"></span>
+            </span>
+        </a>
         <div class="pill-nav" id="mainNav">
             <span class="pill-indicator"></span>
             <ul class="nav-links">
@@ -128,6 +133,12 @@
     <section class="overview-section">
         <div class="container">
             <div class="overview-wrapper">
+            <div class="free-sticker" title="Arrástrame · doble clic para devolverme" aria-hidden="true">
+                <span class="stk">
+                    <span class="stk-body"><img src="images/pegatina.webp" alt="" width="480" height="640" decoding="async"><span class="stk-rainbow"></span><span class="stk-shine"></span></span>
+                    <span class="stk-flap"></span>
+                </span>
+            </div>
                 <h2 class="overview-title">
                     <span class="overview-words reveal-blur">Trabajo con startups, agencias y empresas para crear</span>
                     <span class="overview-words reveal-blur">experiencias digitales coherentes:</span>
@@ -142,7 +153,9 @@
     <!-- Servicios Section -->
     <section id="servicios" class="servicios-interactive">
         <div class="container">
-            <h2 class="servicios-title">Servicios</h2>
+            <h2 class="servicios-title">Servicios
+                <i class="hd tl"></i><i class="hd tm"></i><i class="hd tr"></i><i class="hd ml"></i><i class="hd mr"></i><i class="hd bl"></i><i class="hd bm"></i><i class="hd br"></i>
+            </h2>
             
             <div class="servicios-list">
                 <!-- Servicio 1 -->
@@ -521,6 +534,6 @@
     <script src="vendor/gsap.min.js"></script>
     <script src="vendor/ScrollTrigger.min.js"></script>
     <script src="script.js?v=20"></script>
-    <script src="canvas.js?v=14"></script>
+    <script src="canvas.js?v=21"></script>
 </body>
 </html>

@@ -255,3 +255,103 @@
     });
 })();
 
+
+/* Pegatina holográfica: el brillo sigue al puntero */
+(function () {
+    var a = document.querySelector('.sticker-logo'); var s = a && a.querySelector('.stk-body');
+    if (!s) return;
+    a.addEventListener('pointermove', function (e) {
+        var r = a.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        s.style.setProperty('--hx', Math.round(x * 100) + '%'); s.style.setProperty('--hy', Math.round(y * 100) + '%');
+        s.style.setProperty('--sx', Math.round(130 - x * 160) + '%');
+    });
+})();
+
+// Título de la portada: se puede mover (arrastrar) y escalar (tiradores), como en Illustrator. Doble clic = restablecer
+(function () {
+  document.querySelectorAll('.sel, .servicios-title').forEach(function (sel) {
+    const pos = { tl: [0, 0], tm: [.5, 0], tr: [1, 0], ml: [0, .5], mr: [1, .5], bl: [0, 1], bm: [.5, 1], br: [1, 1] };
+    let tx = 0, ty = 0, s = 1, st = null;
+    sel.style.transformOrigin = '0 0';
+    function aplicar() {
+        sel.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + s + ')';
+        sel.style.setProperty('--s', s);
+        dispatchEvent(new Event('resize'));
+    }
+    sel.addEventListener('pointerdown', e => {
+        if (e.pointerType === 'touch' || e.button !== 0) return;
+        const hd = e.target.closest('.hd');
+        const r = sel.getBoundingClientRect();
+        st = { P: [e.clientX, e.clientY], tx: tx, ty: ty, s: s, L: r.left - tx, Tp: r.top - ty, W: sel.offsetWidth, H: sel.offsetHeight, h: null };
+        if (hd) { const k = Object.keys(pos).find(c => hd.classList.contains(c)); if (k) st.h = pos[k]; }
+        sel.classList.add('is-dragging');
+        sel.style.transition = 'none';
+        sel.setPointerCapture(e.pointerId);
+        e.preventDefault();
+    });
+    sel.addEventListener('pointermove', e => {
+        if (!st) return;
+        const dx = e.clientX - st.P[0], dy = e.clientY - st.P[1];
+        if (!st.h) { tx = st.tx + dx; ty = st.ty + dy; }
+        else {
+            const f = st.h, a = [(1 - f[0]) * st.W, (1 - f[1]) * st.H];
+            const v = [(f[0] * st.W) - a[0], (f[1] * st.H) - a[1]];
+            const A = [st.L + st.tx + st.s * a[0], st.Tp + st.ty + st.s * a[1]];
+            const d = [e.clientX - A[0], e.clientY - A[1]];
+            const ns = Math.max(.4, Math.min(3, (d[0] * v[0] + d[1] * v[1]) / (v[0] * v[0] + v[1] * v[1])));
+            s = ns; tx = st.tx + (st.s - ns) * a[0]; ty = st.ty + (st.s - ns) * a[1];
+        }
+        aplicar();
+    });
+    const fin = () => { st = null; sel.classList.remove('is-dragging'); };
+    sel.addEventListener('pointerup', fin); sel.addEventListener('pointercancel', fin);
+    sel.addEventListener('dblclick', () => {
+        sel.style.transition = 'transform .45s cubic-bezier(.2,.9,.3,1.2)';
+        tx = 0; ty = 0; s = 1; aplicar();
+        setTimeout(() => { sel.style.transition = ''; }, 500);
+    });
+  });
+})();
+
+// Servicios (etiquetas) y marcas: también se pueden arrastrar. Doble clic = volver a su sitio
+(function () {
+    function arrastrable(el) {
+        let x = 0, y = 0, st = null, movido = false;
+        el.addEventListener('pointerdown', e => {
+            if (e.pointerType === 'touch' || e.button !== 0) return;
+            st = { px: e.clientX, py: e.clientY, x: x, y: y }; movido = false;
+            el.setPointerCapture(e.pointerId);
+            el.classList.add('is-dragging');
+            el.style.transition = 'none';
+        });
+        el.addEventListener('pointermove', e => {
+            if (!st) return;
+            const dx = e.clientX - st.px, dy = e.clientY - st.py;
+            if (!movido && Math.hypot(dx, dy) < 4) return;
+            movido = true;
+            x = st.x + dx; y = st.y + dy;
+            el.style.translate = x + 'px ' + y + 'px';
+        });
+        const fin = () => { st = null; el.classList.remove('is-dragging'); };
+        el.addEventListener('pointerup', fin); el.addEventListener('pointercancel', fin);
+        el.addEventListener('click', e => { if (movido) { e.preventDefault(); e.stopPropagation(); movido = false; } }, true);
+        el.addEventListener('dragstart', e => e.preventDefault());
+        el.addEventListener('dblclick', e => {
+            e.preventDefault();
+            el.style.transition = 'translate .45s cubic-bezier(.2,.9,.3,1.2)';
+            x = 0; y = 0; el.style.translate = '0px 0px';
+            setTimeout(() => { el.style.transition = ''; }, 500);
+        });
+    }
+    document.querySelectorAll('.svc-chip, .free-sticker').forEach(arrastrable);
+})();
+
+// Pegatina de la portada: el brillo sigue al puntero
+(function () {
+    const a = document.querySelector('.free-sticker'); if (!a) return;
+    a.addEventListener('pointermove', e => {
+        const r = a.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        a.style.setProperty('--hx', Math.round(x * 100) + '%'); a.style.setProperty('--hy', Math.round(y * 100) + '%'); a.style.setProperty('--sx', Math.round(130 - x * 160) + '%');
+    });
+})();

@@ -625,3 +625,65 @@ body.lz-off .lz-bg, body.lz-off .lz-ui, body.lz-off .lz-you { display: none !imp
     .servicio-tags { justify-content: flex-start; }
 }
 
+
+/* ===== Pegatina holográfica (logo) ===== */
+:root:root .logo-pill.sticker-logo { display: flex; align-items: center; padding: 0; border: 0; background: none; box-shadow: none; border-radius: 0; color: inherit; margin-right: auto; }
+.stk { margin: -12px 0; position: relative; width: 66px; height: 66px; flex: none; z-index: 2; transform: rotate(-8deg); transition: transform .35s cubic-bezier(.2,.9,.3,1.4);
+    filter: drop-shadow(1px 2px 0 rgba(0,0,0,.25)) drop-shadow(3px 6px 6px rgba(0,0,0,.28)); }
+.sticker-logo:hover .stk { transform: rotate(-2deg) scale(1.1); }
+.stk-body { position: absolute; inset: 0; clip-path: polygon(0 0, 100% 0, 99.7% 55.3%, 55.3% 99.7%, 0 100%); isolation: isolate; }
+.stk-body::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 1px rgba(0,0,0,.18); }
+.stk-body img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transform: scale(.9) translateY(3%); border-radius: 50%; clip-path: circle(46% at 50% 50%); }
+.stk-rainbow, .stk-shine { position: absolute; inset: 0; border-radius: 50%; pointer-events: none; }
+.stk-rainbow { background: linear-gradient(115deg, #ff9ad5, #ffe27a 18%, #8cf5c4 36%, #7fd0ff 54%, #b79bff 72%, #ff9ad5 90%); background-size: 260% 260%; background-position: var(--hx, 30%) var(--hy, 30%); mix-blend-mode: multiply; opacity: .2; animation: stkHolo 6s ease-in-out infinite alternate; }
+.stk-shine { background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.95) 48%, rgba(255,255,255,.1) 54%, transparent 62%); background-size: 260% 100%; background-position: var(--sx, 120%) 0; mix-blend-mode: soft-light; animation: stkShine 4.5s ease-in-out infinite; }
+.stk-flap { position: absolute; inset: 0; clip-path: polygon(99.7% 55.3%, 93% 56.5%, 86.6% 58.5%, 80.4% 61.5%, 74.8% 65.2%, 69.6% 69.6%, 65.2% 74.8%, 61.5% 80.4%, 58.5% 86.6%, 56.5% 93%, 55.3% 99.7%);
+    background: linear-gradient(135deg, #f4f4f4 0%, #c9d6ff 22%, #ffd1f0 42%, #fff3b8 62%, #b9f5e1 82%, #ececec 100%); }
+.stk-flap::after { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.18)); }
+@keyframes stkHolo { to { background-position: 90% 80%; } }
+@keyframes stkShine { 0%, 55% { background-position: 130% 0; } 100% { background-position: -30% 0; } }
+@media (prefers-reduced-motion: reduce) { .stk-rainbow, .stk-shine { animation: none; } .stk { transition: none; } }
+@media (max-width: 768px) {
+    .stk { width: 54px; height: 54px; margin: -8px 0; }
+    }
+.sticker-logo:hover .stk-rainbow, .sticker-logo:hover .stk-shine { animation: none; }
+
+
+/* Interruptor café/cerveza: texto más legible en escritorio */
+@media (min-width: 769px) {
+    :root .theme-toggle.tt { width: 134px; }
+    :root .theme-toggle.tt .tt-label { font-size: 11.5px; font-weight: 700; line-height: 1.2; letter-spacing: .05em; color: #111; }
+    :root .theme-toggle.tt .l-day { left: 16px; }
+    :root .theme-toggle.tt .l-night { right: 16px; }
+    :root[data-theme="dark"] .theme-toggle.tt .tt-label { color: #fff; }
+}
+
+/* Título de la portada movible/escalable */
+.sel { cursor: grab; outline-width: calc(1px / var(--s, 1)); }
+.sel.is-dragging { cursor: grabbing; user-select: none; }
+.sel > .hd { scale: calc(1 / var(--s, 1)); }
+.sel > .hd.tl, .sel > .hd.br { cursor: nwse-resize; } .sel > .hd.tr, .sel > .hd.bl { cursor: nesw-resize; }
+.sel > .hd.tm, .sel > .hd.bm { cursor: ns-resize; } .sel > .hd.ml, .sel > .hd.mr { cursor: ew-resize; }
+.sel > .sel-size { scale: calc(1 / var(--s, 1)); transform-origin: 0 0; pointer-events: none; }
+
+/* Etiquetas de servicios arrastrables */
+.svc-chip { cursor: grab; position: relative; -webkit-user-drag: none; }
+.svc-chip.is-dragging { cursor: grabbing; z-index: 50; user-select: none; box-shadow: 3px 3px 0 #111; }
+
+/* Título "Servicios": mover y escalar con tiradores reales */
+.servicios-title::before { display: none; }
+.servicios-title { cursor: grab; position: relative; width: fit-content; outline-width: calc(1px / var(--s, 1)); }
+.servicios-title.is-dragging { cursor: grabbing; z-index: 60; user-select: none; }
+.servicios-title > .hd { scale: calc(1 / var(--s, 1)); animation: none; }
+.servicios-title > .hd.tl, .servicios-title > .hd.br { cursor: nwse-resize; } .servicios-title > .hd.tr, .servicios-title > .hd.bl { cursor: nesw-resize; }
+.servicios-title > .hd.tm, .servicios-title > .hd.bm { cursor: ns-resize; } .servicios-title > .hd.ml, .servicios-title > .hd.mr { cursor: ew-resize; }
+
+/* Pegatina libre (junto a "Trabajo con startups…") */
+.overview-wrapper { position: relative; }
+.free-sticker { position: absolute; top: 10px; right: 4%; width: 132px; height: 132px; cursor: grab; z-index: 6; touch-action: none; }
+.free-sticker.is-dragging { cursor: grabbing; z-index: 60; user-select: none; }
+.free-sticker .stk { display: block; width: 100%; height: 100%; margin: 0; transform: rotate(8deg); }
+.free-sticker:hover .stk { transform: rotate(2deg) scale(1.06); }
+.free-sticker:hover .stk-rainbow, .free-sticker:hover .stk-shine { animation: none; }
+.free-sticker img { -webkit-user-drag: none; pointer-events: none; }
+@media (max-width: 899px) { .free-sticker { display: none; } }
