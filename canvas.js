@@ -322,7 +322,7 @@
             if (e.pointerType === 'touch' || e.button !== 0) return;
             st = { px: e.clientX, py: e.clientY, x: x, y: y }; movido = false;
             el.setPointerCapture(e.pointerId);
-            el.classList.add('is-dragging');
+            el.classList.add('is-dragging'); document.body.classList.add('lz-drag');
             el.style.transition = 'none';
         });
         el.addEventListener('pointermove', e => {
@@ -333,7 +333,7 @@
             x = st.x + dx; y = st.y + dy;
             el.style.translate = x + 'px ' + y + 'px';
         });
-        const fin = () => { st = null; el.classList.remove('is-dragging'); };
+        const fin = () => { st = null; el.classList.remove('is-dragging'); document.body.classList.remove('lz-drag'); };
         el.addEventListener('pointerup', fin); el.addEventListener('pointercancel', fin);
         el.addEventListener('click', e => { if (movido) { e.preventDefault(); e.stopPropagation(); movido = false; } }, true);
         el.addEventListener('dragstart', e => e.preventDefault());

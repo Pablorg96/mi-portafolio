@@ -687,3 +687,10 @@ body.lz-off .lz-bg, body.lz-off .lz-ui, body.lz-off .lz-you { display: none !imp
 .free-sticker:hover .stk-rainbow, .free-sticker:hover .stk-shine { animation: none; }
 .free-sticker img { -webkit-user-drag: none; pointer-events: none; }
 @media (max-width: 899px) { .free-sticker { display: none; } }
+
+/* Pegatina libre: sin rastros al arrastrar (capa propia, sombra sin filtros, sin cursor-lente ni animaciones mientras se mueve) */
+body.lz-drag .lz-bg, body.lz-drag .lz-ui, body.lz-drag .lz-you { display: none !important; }
+.free-sticker { will-change: translate; transform: translateZ(0); backface-visibility: hidden; }
+.free-sticker .stk { filter: none; }
+.free-sticker .stk::before { content: ""; position: absolute; inset: 4%; border-radius: 50%; background: rgba(0,0,0,.30); filter: blur(5px); transform: translate(3px, 6px); z-index: -1; }
+.free-sticker.is-dragging .stk-rainbow, .free-sticker.is-dragging .stk-shine { animation: none; }
