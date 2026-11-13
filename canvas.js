@@ -436,7 +436,7 @@
       chips: ['Concepto', 'Producción integral', 'Postproducción', 'Contenido con IA'] },
     { tipo: 'Vídeo · Campaña', stats: [['Atresmedia', 'campaña de lanzamiento']],
       chips: ['Concepto', 'Guión', 'Locución', 'Grabación', 'Edición', 'Color grading', 'Postproducción con IA'] },
-    { tipo: 'App móvil · B2C', stats: [['+3.700', 'usuarios usan la app del Hub'], ['310.500 €', 'de ingresos en la app móvil'], ['2', 'programas de salud (Control y ED)']],
+    { tipo: 'App móvil · B2C', stats: [['+6.000', 'usuarios usan la app del Hub'], ['310.500 €', 'de ingresos en la app móvil'], ['2', 'programas de salud (Control y ED)']],
       chips: ['UX/UI', 'Fases de entrenamiento', 'Contenido educativo', 'Ejercicios', 'Seguimiento de progreso'] },
     { tipo: 'App móvil · B2B2C', stats: [['5', 'dispositivos integrables']],
       chips: ['UX/UI', 'Programas prescritos', 'Ejercicios guiados', 'Informes de evolución', 'Contenido educativo'] }
