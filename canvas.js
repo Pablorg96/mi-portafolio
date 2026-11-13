@@ -436,7 +436,7 @@
       chips: ['Concepto', 'Producción integral', 'Postproducción', 'Contenido con IA'] },
     { tipo: 'Vídeo · Campaña', stats: [['Atresmedia', 'campaña de lanzamiento']],
       chips: ['Concepto', 'Guión', 'Locución', 'Grabación', 'Edición', 'Color grading', 'Postproducción con IA'] },
-    { tipo: 'App móvil · B2C', stats: [['2', 'programas de salud (Control y ED)']],
+    { tipo: 'App móvil · B2C', stats: [['+3.700', 'usuarios usan la app del Hub'], ['310.500 €', 'de ingresos en la app móvil'], ['2', 'programas de salud (Control y ED)']],
       chips: ['UX/UI', 'Fases de entrenamiento', 'Contenido educativo', 'Ejercicios', 'Seguimiento de progreso'] },
     { tipo: 'App móvil · B2B2C', stats: [['5', 'dispositivos integrables']],
       chips: ['UX/UI', 'Programas prescritos', 'Ejercicios guiados', 'Informes de evolución', 'Contenido educativo'] }
@@ -545,4 +545,48 @@
   function listo() { svg.classList.add('bz-ready'); }
   path.addEventListener('animationend', listo); setTimeout(listo, 3200);
   pintar();
+})();
+
+/* ===== Reseñas en vídeo: vista previa al pasar el ratón + reproductor ===== */
+(function () {
+  var cards = [].slice.call(document.querySelectorAll('.vr-card'));
+  var modal = document.getElementById('vrModal'); if (!cards.length || !modal) return;
+  var v = document.getElementById('vrVideo'), idx = 0;
+  var hover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* Vista previa muda al pasar el ratón (solo con ratón) */
+  if (hover) cards.forEach(function (c) {
+    var pv = c.querySelector('video'); if (!pv) return;
+    c.addEventListener('mouseenter', function () {
+      if (!pv.src) pv.src = pv.dataset.src;
+      try { pv.currentTime = 4; } catch (e) {}
+      pv.play().then(function () { c.classList.add('is-prev'); }).catch(function () {});
+    });
+    c.addEventListener('mouseleave', function () { pv.pause(); c.classList.remove('is-prev'); });
+  });
+
+  function pad(n) { return ('0' + n).slice(-2); }
+  function abrir(i) {
+    idx = (i + cards.length) % cards.length;
+    var c = cards[idx];
+    v.src = c.dataset.video; v.currentTime = 0;
+    document.getElementById('vrFile').textContent = 'Reseña ' + pad(idx + 1) + ' / ' + pad(cards.length);
+    document.getElementById('vrOrg').textContent = c.dataset.name + ' · ' + c.dataset.org;
+    modal.classList.toggle('single', cards.length < 2);
+    modal.classList.add('active'); document.body.style.overflow = 'hidden';
+    v.play().catch(function () {});
+  }
+  function cerrar() { modal.classList.remove('active'); v.pause(); v.removeAttribute('src'); v.load(); document.body.style.overflow = ''; }
+  cards.forEach(function (c, i) { c.addEventListener('click', function () { cards.forEach(function (x) { x.classList.remove('is-prev'); var p = x.querySelector('video'); if (p) p.pause(); }); abrir(i); }); });
+  [].forEach.call(document.querySelectorAll('.vr-more'), function (b) { b.addEventListener('click', function () { var it = b.closest('.vr-item'); var c = it && it.querySelector('.vr-card'); if (c) c.click(); }); });
+  document.getElementById('vrX').addEventListener('click', cerrar);
+  document.getElementById('vrPrev').addEventListener('click', function () { abrir(idx - 1); });
+  document.getElementById('vrNext').addEventListener('click', function () { abrir(idx + 1); });
+  modal.addEventListener('click', function (e) { if (e.target === modal) cerrar(); });
+  document.addEventListener('keydown', function (e) {
+    if (!modal.classList.contains('active')) return;
+    if (e.key === 'Escape') cerrar();
+    else if (e.key === 'ArrowLeft' && cards.length > 1) abrir(idx - 1);
+    else if (e.key === 'ArrowRight' && cards.length > 1) abrir(idx + 1);
+  });
 })();

@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="style.css?v=11">
     <link rel="preload" href="fonts/DMMono-400.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="fonts/fonts.css?v=1">
-    <link rel="stylesheet" href="canvas.css?v=79">
+    <link rel="stylesheet" href="canvas.css?v=88">
 </head>
 <body>
     <!-- Navbar (Pill Navigation) -->
@@ -375,32 +375,59 @@
                 <h2 class="reveal-up">Lo que dicen mis clientes</h2>
             </div>
 
-            <div class="t-wrap reveal-up">
-                <p class="t-hint" aria-hidden="true">¡arrástralas!</p>
-                <div class="t-stage" id="tStage" tabindex="0" aria-label="Opiniones de clientes">
-                    <article class="t-note t-yellow" style="--r:-3deg">
-                        <i class="t-pin" aria-hidden="true"></i>
-                        <span class="t-quote" aria-hidden="true">“</span>
-                        <div class="t-stars" aria-label="5 de 5 estrellas">★★★★★</div>
-                        <p class="t-text">Pablo entiende perfectamente cómo conectar diseño y audiovisual. Su visión 360º transforma proyectos ordinarios en experiencias memorables.</p>
-                        <footer class="t-autor"><span class="t-avatar">C</span><span class="t-info"><strong>Cliente</strong><em>Proyecto</em></span></footer>
+            <div class="vr-wrap reveal-up">
+                <div class="vr-wall" id="vrWall">
+                    <!-- Para añadir otra reseña: copia un bloque .vr-item entero y cambia los textos y los data-* -->
+                    <article class="vr-item">
+                        <button type="button" class="vr-card" data-video="videos/resena-ana-cirera.mp4" data-name="Ana Cirera" data-org="Farmacia Pedro Salvador" data-len="0:40" aria-label="Ver la reseña en vídeo de Ana Cirera, Farmacia Pedro Salvador">
+                            <img src="images/resena-ana-cirera.jpg" alt="" loading="lazy" decoding="async" width="720" height="1280">
+                            <video muted loop playsinline preload="none" data-src="videos/resena-ana-cirera.mp4" aria-hidden="true"></video>
+                            <span class="vr-lbl"><span class="chip-vr c">Ana Cirera</span><span class="chip-vr">0:40</span></span>
+                            <span class="vr-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 2.5 L13 8 L4 13.5Z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>Ver reseña</span>
+                        </button>
+                        <div class="vr-info">
+                            <div class="vr-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                            <blockquote class="vr-quote">“Es súper accesible y muy fácil trabajar con él. <mark>No me ha fallado ni una sola vez</mark>.”</blockquote>
+                            <div class="vr-who"><span class="vr-av" aria-hidden="true">A</span><span><strong>Ana Cirera</strong><em>Farmacia Pedro Salvador · Sevilla</em></span></div>
+                            <div class="vr-tags"><span class="svc-chip">Redes sociales</span><span class="svc-chip">+1 año colaborando</span><span class="svc-chip">Posts siempre a tiempo</span></div>
+                            <button type="button" class="vr-more">▶ Ver reseña completa · 0:40</button>
+                        </div>
                     </article>
-                    <article class="t-note t-mint" style="--r:2.5deg">
-                        <i class="t-pin" aria-hidden="true"></i>
-                        <span class="t-quote" aria-hidden="true">“</span>
-                        <div class="t-stars" aria-label="5 de 5 estrellas">★★★★★</div>
-                        <p class="t-text">Trabajar con alguien que domina tantas disciplinas es raro. Pablo no solo ejecuta, entiende la estrategia detrás de cada proyecto.</p>
-                        <footer class="t-autor"><span class="t-avatar">C</span><span class="t-info"><strong>Cliente</strong><em>Proyecto</em></span></footer>
+                    <article class="vr-item vr-text">
+                        <figure class="vr-photo"><img src="images/celia-yelamos.jpg" alt="Celia Yélamos" loading="lazy" decoding="async" width="256" height="256"></figure>
+                        <div class="vr-info">
+                            <div class="vr-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                            <blockquote class="vr-quote">“Pablo me ayudó muchísimo a mostrar mi imagen de marca y a crearla. <mark>Mi marca se ve mucho más profesional</mark> gracias en buena parte a él.”</blockquote>
+                            <div class="vr-who"><span><strong>Celia Yélamos</strong><em>Imagen de marca</em></span></div>
+                            <div class="vr-tags"><span class="svc-chip">Imagen de marca</span><span class="svc-chip">Creación de marca</span></div>
+                        </div>
                     </article>
-                </div>
-                <div class="t-ctrl">
-                    <button class="t-btn" type="button" data-dir="-1" aria-label="Opinión anterior">←</button>
-                    <span class="t-count" aria-live="polite">01 / 02</span>
-                    <button class="t-btn" type="button" data-dir="1" aria-label="Opinión siguiente">→</button>
+                    <article class="vr-item vr-text vr-rev">
+                        <figure class="vr-photo"><img src="images/aroa.jpg" alt="Aroa" loading="lazy" decoding="async" width="256" height="256"></figure>
+                        <div class="vr-info">
+                            <div class="vr-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                            <blockquote class="vr-quote vr-long">“Con Pablo hemos trabajado codo con codo en la creación de marcas de empresa, y en diseño web y fotografía de algunas bodas cuando me ha hecho falta. Siempre ha estado ahí y <mark>el resultado ha sido de 10</mark>.”</blockquote>
+                            <div class="vr-who"><span><strong>Aroa</strong><em>Diseño web y fotografía</em></span></div>
+                            <div class="vr-tags"><span class="svc-chip">Marcas de empresa</span><span class="svc-chip">Diseño web</span><span class="svc-chip">Fotografía de bodas</span></div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Reproductor de reseñas en vídeo -->
+    <div id="vrModal" class="vr-modal" role="dialog" aria-modal="true" aria-label="Reseña en vídeo">
+        <div class="vr-box">
+            <div class="vr-bar">
+                <span class="vr-file" id="vrFile">Reseña 01 / 01</span>
+                <span class="vr-org" id="vrOrg"></span>
+                <span class="vr-nav"><button type="button" id="vrPrev" aria-label="Reseña anterior">←</button><button type="button" id="vrNext" aria-label="Reseña siguiente">→</button></span>
+                <button type="button" class="vr-x" id="vrX" aria-label="Cerrar">&times;</button>
+            </div>
+            <div class="vr-player"><video id="vrVideo" playsinline controls preload="none"></video></div>
+        </div>
+    </div>
 
     <!-- About -->
     <section class="about-section" id="sobre">
@@ -561,6 +588,6 @@
     <script src="vendor/gsap.min.js"></script>
     <script src="vendor/ScrollTrigger.min.js"></script>
     <script src="script.js?v=20"></script>
-    <script src="canvas.js?v=34"></script>
+    <script src="canvas.js?v=37"></script>
 </body>
 </html>
