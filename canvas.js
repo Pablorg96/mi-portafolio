@@ -590,3 +590,29 @@
     else if (e.key === 'ArrowRight' && cards.length > 1) abrir(idx + 1);
   });
 })();
+
+/* Reseñas escritas: indicadores del carrusel móvil */
+(function () {
+    var pista = document.getElementById('vrTexts');
+    if (!pista) return;
+    var cards = pista.querySelectorAll('.vr-text');
+    if (cards.length < 2) return;
+    var dots = document.createElement('div');
+    dots.className = 'vr-dots';
+    var bs = [];
+    cards.forEach(function (c, i) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.setAttribute('aria-label', 'Reseña ' + (i + 1));
+        b.addEventListener('click', function () { pista.scrollTo({ left: c.offsetLeft - pista.offsetLeft - 20, behavior: 'smooth' }); });
+        dots.appendChild(b); bs.push(b);
+    });
+    pista.parentNode.appendChild(dots);
+    function marca() {
+        var x = pista.scrollLeft, mejor = 0, d = 1e9;
+        cards.forEach(function (c, i) { var dd = Math.abs((c.offsetLeft - pista.offsetLeft - 20) - x); if (dd < d) { d = dd; mejor = i; } });
+        if (pista.scrollLeft + pista.clientWidth >= pista.scrollWidth - 4) mejor = cards.length - 1;
+        bs.forEach(function (b, i) { b.classList.toggle('is-on', i === mejor); });
+    }
+    pista.addEventListener('scroll', marca, { passive: true });
+    marca();
+})();
