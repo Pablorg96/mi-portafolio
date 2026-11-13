@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="style.css?v=11">
     <link rel="preload" href="fonts/DMMono-400.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="fonts/fonts.css?v=1">
-    <link rel="stylesheet" href="canvas.css?v=58">
+    <link rel="stylesheet" href="canvas.css?v=64">
 </head>
 <body>
     <!-- Navbar (Pill Navigation) -->
@@ -327,16 +327,39 @@
     </section>
 
     <!-- Modal -->
-    <div id="modal" class="modal">
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-content">
-            <span class="close" onclick="cerrarModal()">&times;</span>
-            <div class="modal-video">
-                <iframe id="modalVideo" width="100%" height="600" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <img id="modalImage" src="" alt="" style="display:none;">
+            <div class="modal-bar">
+                <span class="mb-file" id="modalFile">Proyecto 01 / 05</span>
+                <span class="mb-type" id="modalTipo"></span>
+                <span class="mb-nav">
+                    <button type="button" id="modalPrev" aria-label="Proyecto anterior">←</button>
+                    <button type="button" id="modalNext" aria-label="Proyecto siguiente">→</button>
+                </span>
+                <button type="button" class="close" onclick="cerrarModal()" aria-label="Cerrar">&times;</button>
             </div>
-            <div class="modal-info">
-                <h2 id="modalTitle"></h2>
-                <p id="modalDesc"></p>
+            <div class="modal-body">
+                <div class="modal-frame">
+                    <div class="modal-video">
+                        <iframe id="modalVideo" width="100%" height="600" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <img id="modalImage" src="" alt="" style="display:none;">
+                    </div>
+                    <i class="hd tl"></i><i class="hd tm"></i><i class="hd tr"></i><i class="hd ml"></i><i class="hd mr"></i><i class="hd bl"></i><i class="hd bm"></i><i class="hd br"></i>
+                </div>
+                <div class="modal-info">
+                    <div class="mi-col">
+                        <div class="mi-head"><span class="mi-num" id="modalNum">01</span>
+                            <div><h2 id="modalTitle"></h2><p class="mi-sub" id="modalSub"></p></div>
+                        </div>
+                        <div class="mi-stats" id="modalStats"></div>
+                    </div>
+                    <div class="mi-col">
+                        <h4 class="mi-label">Qué hice</h4>
+                        <div class="mi-chips" id="modalChips"></div>
+                        <h4 class="mi-label">Resumen</h4>
+                        <p id="modalDesc"></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -534,6 +557,6 @@
     <script src="vendor/gsap.min.js"></script>
     <script src="vendor/ScrollTrigger.min.js"></script>
     <script src="script.js?v=20"></script>
-    <script src="canvas.js?v=31"></script>
+    <script src="canvas.js?v=32"></script>
 </body>
 </html>

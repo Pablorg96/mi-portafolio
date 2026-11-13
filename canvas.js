@@ -423,3 +423,60 @@
     '<feComposite in="d" in2="m" operator="in"/></filter></svg>';
   document.body.appendChild(d);
 })();
+
+/* ===== Ventana de proyecto (vídeo / imagen) con estética artboard ===== */
+(function () {
+  if (typeof abrirModal !== 'function' || typeof casos === 'undefined') return;
+  var COL = ['#efd128', '#99d196', '#e84769', '#88dafc', '#FF6529'];
+  var INK = ['#111', '#111', '#fff', '#111', '#fff'];
+  var DATA = [
+    { tipo: 'Vídeo · Kickstarter', stats: [['327.109 €', 'recaudados'], ['2.898', 'patrocinadores']],
+      chips: ['Concepto', 'Guión', 'Locución', 'Grabación', 'Edición', 'Color grading', 'Diseño de sonido', 'Postproducción'] },
+    { tipo: 'Vídeo · Kickstarter', stats: [['706.153 €', 'recaudados'], ['3.276', 'patrocinadores']],
+      chips: ['Concepto', 'Producción integral', 'Postproducción', 'Contenido con IA'] },
+    { tipo: 'Vídeo · Campaña', stats: [['Atresmedia', 'campaña de lanzamiento']],
+      chips: ['Concepto', 'Guión', 'Locución', 'Grabación', 'Edición', 'Color grading', 'Postproducción con IA'] },
+    { tipo: 'App móvil · B2C', stats: [['2', 'programas de salud (Control y ED)']],
+      chips: ['UX/UI', 'Fases de entrenamiento', 'Contenido educativo', 'Ejercicios', 'Seguimiento de progreso'] },
+    { tipo: 'App móvil · B2B2C', stats: [['5', 'dispositivos integrables']],
+      chips: ['UX/UI', 'Programas prescritos', 'Ejercicios guiados', 'Informes de evolución', 'Contenido educativo'] }
+  ];
+  var $ = function (id) { return document.getElementById(id); };
+  var actual = 0, modal = $('modal');
+  var orig = window.abrirModal;
+
+  function pintar(i) {
+    var c = casos[i], d = DATA[i] || { tipo: '', stats: [], chips: [] };
+    actual = i;
+    var partes = c.title.split(' — ');
+    $('modalTitle').textContent = partes[0];
+    $('modalSub').textContent = partes[1] || '';
+    $('modalNum').textContent = ('0' + (i + 1)).slice(-2);
+    $('modalFile').textContent = 'Proyecto ' + ('0' + (i + 1)).slice(-2) + ' / ' + ('0' + casos.length).slice(-2);
+    $('modalTipo').textContent = d.tipo;
+    var st = $('modalStats'); st.innerHTML = '';
+    d.stats.forEach(function (s) {
+      var b = document.createElement('div'); b.className = 'mi-stat';
+      var v = document.createElement('strong'); v.textContent = s[0];
+      var l = document.createElement('span'); l.textContent = s[1];
+      b.appendChild(v); b.appendChild(l); st.appendChild(b);
+    });
+    var ch = $('modalChips'); ch.innerHTML = '';
+    d.chips.forEach(function (t) { var s = document.createElement('span'); s.className = 'svc-chip'; s.textContent = t; ch.appendChild(s); });
+    var mc = modal.querySelector('.modal-content');
+    mc.style.setProperty('--c', COL[i % COL.length]);
+    mc.style.setProperty('--ink', INK[i % INK.length]);
+    modal.querySelector('.modal-video').classList.toggle('is-img', c.type === 'image');
+    mc.classList.remove('mc-in'); void mc.offsetWidth; mc.classList.add('mc-in');
+    var body = modal.querySelector('.modal-body'); if (body) body.scrollTop = 0;
+  }
+  window.abrirModal = function (i) { orig(i); pintar(i); };
+  $('modalPrev').addEventListener('click', function () { window.abrirModal((actual + casos.length - 1) % casos.length); });
+  $('modalNext').addEventListener('click', function () { window.abrirModal((actual + 1) % casos.length); });
+  document.addEventListener('keydown', function (e) {
+    if (!modal.classList.contains('active')) return;
+    if (e.key === 'Escape') cerrarModal();
+    else if (e.key === 'ArrowLeft') $('modalPrev').click();
+    else if (e.key === 'ArrowRight') $('modalNext').click();
+  });
+})();
