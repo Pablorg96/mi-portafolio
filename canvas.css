@@ -686,7 +686,7 @@ body.lz-off .lz-bg, body.lz-off .lz-ui, body.lz-off .lz-you { display: none !imp
 .free-sticker:hover .stk { transform: rotate(2deg) scale(1.06); }
 .free-sticker:hover .stk-rainbow, .free-sticker:hover .stk-shine { animation: none; }
 .free-sticker img { -webkit-user-drag: none; pointer-events: none; }
-@media (max-width: 899px) { .free-sticker { display: none; } }
+@media (max-width: 899px) { .free-sticker { width: 74px; height: 74px; top: auto; bottom: 46px; right: 8px; } }
 
 /* Pegatina libre: sin rastros al arrastrar (capa propia, sombra sin filtros, sin cursor-lente ni animaciones mientras se mueve) */
 body.lz-drag .lz-bg, body.lz-drag .lz-ui, body.lz-drag .lz-you { display: none !important; }
@@ -845,3 +845,45 @@ body.lz-drag .lz-bg, body.lz-drag .lz-ui, body.lz-drag .lz-you { display: none !
     .mb-file { flex: 1; }
     .modal-content { box-shadow: 5px 5px 0 #111; }
 }
+
+/* Marcas nuevas: Celia Yélamos (fondo gris claro) y modo oscuro de Indígena / Celia */
+.brand img[src*="Celia"] { mix-blend-mode: multiply; }
+:root[data-theme="dark"] .brand img[src*="Indigena"], :root[data-theme="dark"] .brand img[src*="Celia"] { filter: invert(1) hue-rotate(180deg); mix-blend-mode: screen; }
+.brand img[src*="Indigena"] { transform: scale(1.45); }
+/* Horixon MedTech: azul sobre fondo oscuro necesita aclararse */
+:root[data-theme="dark"] .brand img[src*="Horixon"] { filter: brightness(1.35) saturate(.9); }
+
+/* Móvil: menos aire entre las marcas y "Trabajo con startups…" (como el resto de secciones) */
+@media (max-width: 768px) { .overview-section { padding-top: 26px; } }
+
+/* ===== Botón de reproducir / ver proyecto en las tarjetas: estética artboard ===== */
+.caso-card { --c: #efd128; --ink: #111; }
+.casos-grid .caso-card:nth-child(1) { --c: #efd128; } .casos-grid .caso-card:nth-child(2) { --c: #99d196; }
+.casos-grid .caso-card:nth-child(3) { --c: #e84769; --ink: #fff; } .casos-grid .caso-card:nth-child(4) { --c: #88dafc; }
+.casos-grid .caso-card:nth-child(5) { --c: #FF6529; --ink: #fff; }
+.caso-overlay { background: rgba(16, 16, 16, .22); }
+.play-btn {
+    width: auto; height: auto; gap: 10px; padding: 13px 20px 12px 16px; background: var(--c); color: var(--ink);
+    border: 1.5px solid #111; border-radius: 8px; box-shadow: 4px 4px 0 #111; font: 600 13px/1 var(--mono); letter-spacing: .01em;
+    transform: translateY(6px); transition: transform .25s cubic-bezier(.2,.9,.3,1.2), box-shadow .2s ease;
+}
+.play-btn svg { width: 18px; height: 18px; flex: none; }
+.play-btn b { font-weight: 600; white-space: nowrap; }
+.caso-card:hover .play-btn { transform: translateY(0) scale(1); }
+.caso-card .play-btn:hover { box-shadow: 6px 6px 0 #111; }
+:root[data-theme="dark"] .play-btn { border-color: #f2f2f2; box-shadow: 4px 4px 0 rgba(255,255,255,.85); }
+
+/* Ordenador: un poco más de aire sobre la frase y algo menos hasta Servicios (el móvil no cambia) */
+@media (min-width: 769px) {
+    .overview-section { padding-top: 78px; }
+    .overview-wrapper { margin-bottom: 19px; }
+}
+
+/* ===== Curva de Bézier editable ===== */
+.bezier .bz-hits { pointer-events: auto; }
+.bz-hit { fill: transparent; pointer-events: all; cursor: grab; touch-action: none; }
+.bezier.bz-editing .bz-hit { cursor: grabbing; }
+.bezier.bz-ready .bz-line { stroke-dasharray: none; stroke-dashoffset: 0; animation: none; }
+.bz-anchors rect, .bz-handles circle { transition: transform .15s ease; transform-box: fill-box; transform-origin: center; }
+.bz-hits { z-index: 5; }
+.bezier { z-index: 4; }

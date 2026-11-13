@@ -280,7 +280,7 @@
         dispatchEvent(new Event('resize'));
     }
     sel.addEventListener('pointerdown', e => {
-        if (e.pointerType === 'touch' || e.button !== 0) return;
+        if ((e.pointerType === 'touch' && !el.classList.contains('free-sticker')) || e.button !== 0) return;
         const hd = e.target.closest('.hd');
         const r = sel.getBoundingClientRect();
         st = { P: [e.clientX, e.clientY], tx: tx, ty: ty, s: s, L: r.left - tx, Tp: r.top - ty, W: sel.offsetWidth, H: sel.offsetHeight, h: null };
@@ -319,7 +319,7 @@
     function arrastrable(el) {
         let x = 0, y = 0, st = null, movido = false;
         el.addEventListener('pointerdown', e => {
-            if (e.pointerType === 'touch' || e.button !== 0) return;
+            if ((e.pointerType === 'touch' && !el.classList.contains('free-sticker')) || e.button !== 0) return;
             st = { px: e.clientX, py: e.clientY, x: x, y: y }; movido = false;
             el.setPointerCapture(e.pointerId);
             el.classList.add('is-dragging'); document.body.classList.add('lz-drag');
@@ -479,4 +479,70 @@
     else if (e.key === 'ArrowLeft') $('modalPrev').click();
     else if (e.key === 'ArrowRight') $('modalNext').click();
   });
+})();
+
+/* ===== Curva de Bézier editable: arrastra los puntos de anclaje y los tiradores ===== */
+(function () {
+  var svg = document.querySelector('svg.bezier'); if (!svg) return;
+  var path = svg.querySelector('.bz-line');
+  var lines = svg.querySelectorAll('.bz-handles line');
+  var circs = svg.querySelectorAll('.bz-handles circle');
+  var rects = svg.querySelectorAll('.bz-anchors rect');
+  var INI = { a0: [20, 190], h0: [90, 10], h1i: [230, 10], a1: [280, 120], h1o: [330, 230], h2i: [400, 230], a2: [440, 60] };
+  var P = JSON.parse(JSON.stringify(INI));
+
+  function pintar() {
+    path.setAttribute('d', 'M' + P.a0 + ' C ' + P.h0 + ', ' + P.h1i + ', ' + P.a1 + ' C ' + P.h1o + ', ' + P.h2i + ', ' + P.a2);
+    var seg = [[P.a0, P.h0], [P.h1i, P.a1], [P.a1, P.h1o], [P.h2i, P.a2]];
+    seg.forEach(function (s, i) { var l = lines[i]; l.setAttribute('x1', s[0][0]); l.setAttribute('y1', s[0][1]); l.setAttribute('x2', s[1][0]); l.setAttribute('y2', s[1][1]); });
+    [P.h0, P.h1i, P.h1o, P.h2i].forEach(function (p, i) { circs[i].setAttribute('cx', p[0]); circs[i].setAttribute('cy', p[1]); });
+    [P.a0, P.a1, P.a2].forEach(function (p, i) { rects[i].setAttribute('x', p[0] - 7); rects[i].setAttribute('y', p[1] - 7); });
+    hits.forEach(function (h) { var p = P[h.k]; h.el.setAttribute('cx', p[0]); h.el.setAttribute('cy', p[1]); });
+  }
+
+  /* Zonas de agarre más grandes que los puntos */
+  var NS = 'http://www.w3.org/2000/svg', gh = document.createElementNS(NS, 'g'); gh.setAttribute('class', 'bz-hits');
+  var hits = ['h0', 'h1i', 'h1o', 'h2i', 'a0', 'a1', 'a2'].map(function (k) {
+    var c = document.createElementNS(NS, 'circle'); c.setAttribute('r', k[0] === 'a' ? 16 : 14); c.setAttribute('class', 'bz-hit bz-hit-' + (k[0] === 'a' ? 'a' : 'h')); c.dataset.k = k; gh.appendChild(c);
+    return { k: k, el: c };
+  });
+  svg.appendChild(gh);
+
+  function aPunto(e) {
+    var m = svg.getScreenCTM().inverse(), p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY;
+    var q = p.matrixTransform(m);
+    return [Math.max(-30, Math.min(490, Math.round(q.x * 10) / 10)), Math.max(-30, Math.min(270, Math.round(q.y * 10) / 10))];
+  }
+  function mover(k, q) {
+    var d = [q[0] - P[k][0], q[1] - P[k][1]];
+    function sum(n) { P[n] = [P[n][0] + d[0], P[n][1] + d[1]]; }
+    if (k === 'a0') { sum('a0'); sum('h0'); }
+    else if (k === 'a1') { sum('a1'); sum('h1i'); sum('h1o'); }
+    else if (k === 'a2') { sum('a2'); sum('h2i'); }
+    else if (k === 'h1i') { P.h1i = q; P.h1o = [2 * P.a1[0] - q[0], 2 * P.a1[1] - q[1]]; }
+    else if (k === 'h1o') { P.h1o = q; P.h1i = [2 * P.a1[0] - q[0], 2 * P.a1[1] - q[1]]; }
+    else { P[k] = q; }
+  }
+
+  var act = null;
+  gh.addEventListener('pointerdown', function (e) {
+    var k = e.target.dataset && e.target.dataset.k; if (!k || e.button !== 0) return;
+    e.preventDefault(); act = { k: k, id: e.pointerId, el: e.target };
+    e.target.setPointerCapture(e.pointerId);
+    svg.classList.add('bz-editing'); document.body.classList.add('lz-drag');
+    var q = aPunto(e); act.off = [P[k][0] - q[0], P[k][1] - q[1]];
+  });
+  gh.addEventListener('pointermove', function (e) {
+    if (!act) return;
+    var q = aPunto(e); mover(act.k, [q[0] + act.off[0], q[1] + act.off[1]]); pintar();
+  });
+  function fin() { if (!act) return; act = null; svg.classList.remove('bz-editing'); document.body.classList.remove('lz-drag'); }
+  gh.addEventListener('pointerup', fin); gh.addEventListener('pointercancel', fin);
+  /* doble clic: restaurar la curva original */
+  gh.addEventListener('dblclick', function () { P = JSON.parse(JSON.stringify(INI)); pintar(); });
+
+  /* Cuando termina el dibujado inicial, quitamos el trazo discontinuo para que la curva pueda crecer */
+  function listo() { svg.classList.add('bz-ready'); }
+  path.addEventListener('animationend', listo); setTimeout(listo, 3200);
+  pintar();
 })();
