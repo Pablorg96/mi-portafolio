@@ -270,7 +270,7 @@
 
 // Título de la portada: se puede mover (arrastrar) y escalar (tiradores), como en Illustrator. Doble clic = restablecer
 (function () {
-  document.querySelectorAll('.sel, .servicios-title').forEach(function (sel) {
+  document.querySelectorAll('.sel, .servicios-title, .casos-title').forEach(function (sel) {
     const pos = { tl: [0, 0], tm: [.5, 0], tr: [1, 0], ml: [0, .5], mr: [1, .5], bl: [0, 1], bm: [.5, 1], br: [1, 1] };
     let tx = 0, ty = 0, s = 1, st = null;
     sel.style.transformOrigin = '0 0';
@@ -344,7 +344,7 @@
             setTimeout(() => { el.style.transition = ''; }, 500);
         });
     }
-    document.querySelectorAll('.svc-chip, .free-sticker').forEach(arrastrable);
+    document.querySelectorAll('.svc-chip, .free-sticker, .caso-card').forEach(arrastrable);
 })();
 
 // Pegatina de la portada: el brillo sigue al puntero

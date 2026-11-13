@@ -967,7 +967,7 @@ body.lz-drag .lz-bg, body.lz-drag .lz-ui, body.lz-drag .lz-you { display: none !
     .vr-info { align-items: flex-start; width: 100%; }
 }
 /* Reseña en vídeo arriba, notas escritas debajo */
-.vr-wrap { margin-top: 8px; margin-bottom: 70px; }
+.vr-wrap { margin-top: 8px; margin-bottom: 8px; }
 
 /* Fotos de los clientes en las notas de opinión */
 .t-avatar { overflow: hidden; flex: none; border: 1.5px solid #111; background: #fff; }
@@ -1034,3 +1034,122 @@ body.lz-drag .lz-bg, body.lz-drag .lz-ui, body.lz-drag .lz-you { display: none !
     .vr-texts .vr-text, .vr-texts .vr-text.vr-rev { flex: 0 0 calc(100vw - 56px); max-width: none; box-sizing: border-box; }
     .vr-card { width: min(280px, 100%); }
 }
+
+/* Menos aire entre las reseñas y "¡Hola!" */
+.testimonios { padding-bottom: 20px; }
+.vr-wrap { margin-bottom: 0; }
+
+/* ===== Contacto: cartel grande + formulario en nota amarilla recta (diseño D) ===== */
+.contacto-info h2 { font-size: clamp(56px, 8vw, 112px); letter-spacing: -.04em; line-height: .95; margin-bottom: 22px; }
+.contacto-info p { margin-bottom: 28px; }
+.contacto-socials { gap: 10px; }
+.contacto .social-icon {
+    width: 44px; height: 44px; border-radius: 6px; background: #fff; color: #111;
+    border: 1.5px solid #111; box-shadow: 3px 3px 0 #111;
+}
+.contacto .social-icon:hover { background: var(--y, #efd128); color: #111; transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #111; }
+.contacto-email {
+    margin-top: 22px; padding: 9px 12px; border: 1.5px solid #111; border-radius: 6px; background: #FF6529; color: #111;
+    font: 500 13px/1 var(--mono); box-shadow: 3px 3px 0 #111; transition: transform .15s ease, box-shadow .15s ease;
+}
+.contacto-email:hover { border-color: #111; transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #111; }
+.contacto .cv-btn {
+    padding: 12px 16px; border-radius: 6px; border: 1.5px solid #111; background: #efd128; color: #111;
+    font: 600 13px/1 var(--mono); box-shadow: 3px 3px 0 #111;
+}
+.contacto .cv-btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #111; }
+.contacto .cv-btn-outline { background: #fff; color: #111; }
+.contacto .cv-btn-outline:hover { background: #fff; color: #111; }
+
+.contacto-form {
+    background: #efd128; border: 1.5px solid #111; border-radius: 4px; box-shadow: 8px 8px 0 #111; padding: 28px; transform: none; gap: 0;
+}
+.contacto-form label { color: #111; font: 600 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .04em; margin: 16px 0 7px; }
+.contacto-form label:first-of-type { margin-top: 0; }
+.contacto-form input:not([type="checkbox"]), .contacto-form textarea {
+    background: #fff; color: #111; border: 1.5px solid #111; border-radius: 6px; padding: 12px 13px; font-size: 16px;
+}
+.contacto-form input::placeholder, .contacto-form textarea::placeholder { color: rgba(17,17,17,.45); }
+.contacto-form input:focus, .contacto-form textarea:focus { border-color: var(--ui-blue); box-shadow: 3px 3px 0 var(--ui-blue); }
+.contacto-form .contacto-consent { color: #111; font-weight: 500; }
+.contacto-form .contacto-legal-info { color: rgba(17,17,17,.75); }
+.contacto-legal-info a, .contacto-consent a { color: #111; }
+.contacto-submit {
+    margin-top: 22px; background: #fff; color: #111; border: 1.5px solid #111; border-radius: 6px; padding: 15px;
+    font: 600 14px/1 var(--mono); box-shadow: 3px 3px 0 #111; transition: transform .15s ease, box-shadow .15s ease;
+}
+.contacto-submit:hover { opacity: 1; transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #111; }
+:root[data-theme="dark"] .contacto-form { border: 1.5px solid #f2f2f2; box-shadow: 8px 8px 0 rgba(255,255,255,.85); }
+:root[data-theme="dark"] .contacto-form label,
+:root[data-theme="dark"] .contacto-form input:not([type="checkbox"]),
+:root[data-theme="dark"] .contacto-form textarea,
+:root[data-theme="dark"] .contacto-consent a,
+:root[data-theme="dark"] .contacto-legal-info a { color: #111; }
+:root[data-theme="dark"] .contacto-submit { background: #fff; color: #111; }
+:root[data-theme="dark"] .contacto .social-icon, :root[data-theme="dark"] .contacto .cv-btn-outline { border-color: #f2f2f2; box-shadow: 3px 3px 0 rgba(255,255,255,.85); }
+:root[data-theme="dark"] .contacto .cv-btn, :root[data-theme="dark"] .contacto-email { border-color: #f2f2f2; box-shadow: 3px 3px 0 rgba(255,255,255,.85); color: #111; }
+@media (max-width: 768px) { .contacto-info h2 { font-size: 56px; } .contacto-form { padding: 22px; } }
+.contacto-form .contacto-consent { text-transform: none; letter-spacing: 0; font: 500 13px/1.5 var(--mono); margin: 18px 0 0; }
+
+/* Contacto: formulario celeste, tipografía de la web y menos aire con la sección anterior */
+.contacto-form { background: #88dafc; }
+.contacto-form label, .contacto-form .contacto-consent, .contacto-submit {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+.contacto-form label { font-size: 12px; font-weight: 700; letter-spacing: .03em; }
+.contacto-form .contacto-consent { font-size: 14px; font-weight: 500; }
+.contacto-form .contacto-legal-info { font-size: 12px; }
+.contacto-submit { font-size: 15px; font-weight: 700; }
+@media (min-width: 769px) { .contacto { padding-top: 30px; } }
+
+/* Franja rayada rojo / blanco / azul en el borde inferior del formulario */
+.contacto-form { position: relative; overflow: hidden; padding-bottom: 46px; }
+.contacto-form::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 14px; border-top: 1.5px solid #111;
+    background: repeating-linear-gradient(135deg, #e84769 0 14px, #fff 14px 28px, #2f7bff 28px 42px, #fff 42px 56px);
+}
+:root[data-theme="dark"] .contacto-form::after { border-top-color: #111; }
+
+/* ===== Proyectos destacados: misma estética artboard y dinámica que Servicios ===== */
+.casos-estudio .container::before {
+    content: "Proyectos · Artboard 03"; display: block; font: 11px/1 var(--mono); color: var(--ruler-ink); letter-spacing: .03em; margin-bottom: 22px;
+}
+.casos-title {
+    position: relative; display: inline-block; width: fit-content; padding: 10px 22px 12px; margin-left: 4px; font-weight: 600; letter-spacing: -0.025em;
+    outline: 1px solid var(--ui-blue); outline-width: calc(1px / var(--s, 1)); outline-offset: 0; cursor: grab;
+}
+.casos-title.is-dragging { cursor: grabbing; z-index: 60; user-select: none; }
+.casos-title > .hd { scale: calc(1 / var(--s, 1)); animation: none; }
+.casos-title > .hd.tl, .casos-title > .hd.br { cursor: nwse-resize; } .casos-title > .hd.tr, .casos-title > .hd.bl { cursor: nesw-resize; }
+.casos-title > .hd.tm, .casos-title > .hd.bm { cursor: ns-resize; } .casos-title > .hd.ml, .casos-title > .hd.mr { cursor: ew-resize; }
+
+.casos-grid { counter-reset: caso; gap: 28px; }
+.caso-card {
+    position: relative; counter-increment: caso; padding: 14px 14px 16px; background: #fff; color: #111;
+    border: 1.5px solid #111; border-radius: 8px; box-shadow: 4px 4px 0 #111;
+    transition: background-color .3s ease, box-shadow .3s ease, transform .3s cubic-bezier(.2,.9,.3,1.2), color .3s ease;
+}
+.caso-card::before {
+    content: counter(caso, decimal-leading-zero); position: absolute; left: 24px; top: 24px; z-index: 3;
+    font: 600 12px/1 var(--mono); padding: 8px 10px 7px; background: var(--c); color: var(--ink); border: 1.5px solid #111; border-radius: 6px; box-shadow: 2px 2px 0 #111;
+    transition: background-color .3s ease, color .3s ease;
+}
+.caso-imagen { border: 1.5px solid #111; border-radius: 6px; margin-bottom: 16px; }
+.caso-imagen img { transition: transform .4s ease; }
+.caso-card h3 { font-weight: 600; letter-spacing: -0.02em; }
+.caso-card p { color: rgba(17,17,17,.7); font-family: inherit; }
+@media (hover: hover) and (pointer: fine) {
+    .caso-card:hover { background: var(--c); color: var(--ink); transform: translateY(-6px) rotate(-.4deg); box-shadow: 8px 10px 0 #111; }
+    .caso-card:hover::before { background: #fff; color: #111; }
+    .caso-card:hover .caso-imagen img { transform: scale(1.05); }
+    .caso-card:hover p { color: var(--ink); opacity: .85; }
+}
+.caso-card.is-dragging { cursor: grabbing; z-index: 50; user-select: none; box-shadow: 10px 12px 0 #111; }
+:root[data-theme="dark"] .caso-card { background: #1b1b1b; color: #f2f2f2; border-color: #f2f2f2; box-shadow: 4px 4px 0 rgba(255,255,255,.85); }
+:root[data-theme="dark"] .caso-card p { color: rgba(242,242,242,.7); }
+:root[data-theme="dark"] .caso-imagen { border-color: #f2f2f2; }
+:root[data-theme="dark"] .caso-card:hover { background: var(--c); color: var(--ink); box-shadow: 8px 10px 0 rgba(255,255,255,.85); }
+:root[data-theme="dark"] .caso-card:hover p { color: var(--ink); }
+:root[data-theme="dark"] .caso-card::before { border-color: #f2f2f2; }
+:root[data-theme="dark"] .caso-card:hover::before { border-color: #111; }
+@media (max-width: 768px) { .casos-title { font-size: 40px; } .caso-card { padding: 12px 12px 14px; } .caso-card::before { left: 20px; top: 20px; } }
