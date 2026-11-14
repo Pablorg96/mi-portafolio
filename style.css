@@ -2362,6 +2362,37 @@ body, .navbar, .logo-pill, .pill-nav, .about-section, .testimonio-card {
 :root[data-theme="dark"] .testimonio-card {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
+/* Testimonios en modo noche: aurora atenuada + capa oscura para que el texto se lea */
+:root[data-theme="dark"] .testimonio-aurora {
+    opacity: 0.28;
+}
+:root[data-theme="dark"] .testimonio-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(14, 14, 14, 0.62);
+    pointer-events: none;
+}
+:root[data-theme="dark"] .testimonio-text {
+    color: #ffffff;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
+}
+:root[data-theme="dark"] .testimonio-autor strong {
+    color: #ffffff;
+}
+:root[data-theme="dark"] .testimonio-autor span {
+    color: #d0d0d0;
+}
+:root[data-theme="dark"] .testimonio-stars {
+    color: #F3DE9C;
+}
+:root[data-theme="dark"] .testimonio-dot {
+    background-color: rgba(255, 255, 255, 0.35);
+}
+:root[data-theme="dark"] .testimonio-dot.active {
+    background-color: #ffffff;
+}
 
 /* Botón de cambio de tema */
 .navbar { gap: 12px; }
