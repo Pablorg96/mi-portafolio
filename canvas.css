@@ -1153,3 +1153,11 @@ body.lz-drag .lz-bg, body.lz-drag .lz-ui, body.lz-drag .lz-you { display: none !
 :root[data-theme="dark"] .caso-card::before { border-color: #f2f2f2; }
 :root[data-theme="dark"] .caso-card:hover::before { border-color: #111; }
 @media (max-width: 768px) { .casos-title { font-size: 40px; } .caso-card { padding: 12px 12px 14px; } .caso-card::before { left: 20px; top: 20px; } }
+
+/* Reseñas escritas en modo oscuro: mantienen su fondo verde / azul y el texto oscuro */
+:root[data-theme="dark"] .vr-text, :root[data-theme="dark"] .vr-text.vr-rev { background: var(--c); }
+:root[data-theme="dark"] .vr-text *, :root[data-theme="dark"] .vr-text .vr-quote, :root[data-theme="dark"] .vr-text .vr-who strong, :root[data-theme="dark"] .vr-text .vr-stars { color: #111; }
+:root[data-theme="dark"] .vr-text .vr-who em { color: rgba(17,17,17,.7); }
+:root[data-theme="dark"] .vr-text .vr-quote mark { background: #fff; color: #111; }
+:root[data-theme="dark"] .vr-text .svc-chip { background: #fff; color: #111; border-color: #111; }
+:root[data-theme="dark"] .vr-text .vr-photo { border-color: #111; }
