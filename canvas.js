@@ -616,3 +616,18 @@
     pista.addEventListener('scroll', marca, { passive: true });
     marca();
 })();
+
+/* Pie de página: al rebotar al final de la página (móvil) el fondo que asoma es negro, como el pie */
+(function () {
+    var f = document.querySelector('.footer'); if (!f) return;
+    var root = document.documentElement, meta = document.querySelector('meta[name="theme-color"]'), orig = meta && meta.content, enPie = null;
+    function ajusta() {
+        var dentro = f.getBoundingClientRect().top < innerHeight * 0.5;
+        if (dentro === enPie) return; enPie = dentro;
+        root.style.backgroundColor = dentro ? '#0B0B0B' : getComputedStyle(document.body).backgroundColor;
+        if (meta) meta.content = dentro ? '#0B0B0B' : (root.getAttribute('data-theme') === 'dark' ? '#0e0e0e' : (orig || '#ffffff'));
+    }
+    addEventListener('scroll', ajusta, { passive: true }); addEventListener('resize', ajusta);
+    new MutationObserver(function () { enPie = null; ajusta(); }).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+    ajusta();
+})();
