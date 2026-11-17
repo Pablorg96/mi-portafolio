@@ -1203,3 +1203,13 @@ body.lz-drag .lz-bg, body.lz-drag .lz-ui, body.lz-drag .lz-you { display: none !
     .footer-content { grid-template-columns: 1fr; gap: 36px; }
     .footer-headline h2 { font-size: 44px; }
 }
+
+/* ===== Accesibilidad y detalles (guías de interfaz web) ===== */
+:root { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+.skip-link { position: fixed; left: 12px; top: -60px; z-index: 1000; padding: 10px 14px; background: #efd128; color: #111; border: 1.5px solid #111; border-radius: 6px; box-shadow: 3px 3px 0 #111; font: 600 13px/1 var(--mono); text-decoration: none; transition: top .2s ease; }
+.skip-link:focus { top: 12px; }
+a, button, .caso-card, .vr-card, .chip, .brand { touch-action: manipulation; }
+.modal, .vr-modal { overscroll-behavior: contain; }
+.caso-card:focus-visible { outline: 2px solid var(--ui-blue); outline-offset: 4px; }
+.caso-card:focus-visible { background: var(--c); color: var(--ink); }

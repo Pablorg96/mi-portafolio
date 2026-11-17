@@ -631,3 +631,13 @@
     new MutationObserver(function () { enPie = null; ajusta(); }).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
     ajusta();
 })();
+
+/* Tarjetas de proyecto: se abren también con Enter o Espacio (teclado) */
+(function () {
+    document.querySelectorAll('.caso-card[role="button"]').forEach(function (c) {
+        c.addEventListener('keydown', function (e) {
+            if (e.target !== c) return;
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.click(); }
+        });
+    });
+})();
