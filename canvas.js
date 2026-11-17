@@ -641,3 +641,65 @@
         });
     });
 })();
+
+/* ===== Reels: iPhone con carrete ===== */
+(function () {
+  var stage = document.getElementById('rlStage');
+  if (!stage) return;
+  var phones = Array.prototype.slice.call(stage.querySelectorAll('.rl-phone'));
+  var vids = phones.map(function (p) { return p.querySelector('video'); });
+  var dots = document.querySelectorAll('#rlDots i');
+  var prev = document.getElementById('rlPrev'), next = document.getElementById('rlNext'), snd = document.getElementById('rlSnd');
+  var cur = 0, muted = true, visible = false, userPaused = false, moved = false;
+  phones.forEach(function (p) { var b = document.createElement('span'); b.className = 'rl-pp'; b.setAttribute('aria-hidden', 'true'); b.textContent = '▶'; p.querySelector('.rl-scr').appendChild(b); p.setAttribute('tabindex', '0'); p.setAttribute('role', 'button'); });
+  function play() {
+    vids.forEach(function (v, i) {
+      if (i === cur && visible && !userPaused) {
+        if (!v.src) v.src = v.getAttribute('data-src');
+        v.muted = muted;
+        var pr = v.play(); if (pr && pr.catch) pr.catch(function () {});
+      } else { v.pause(); }
+    });
+  }
+  function render() {
+    var w = phones[0].offsetWidth;
+    phones.forEach(function (p, i) {
+      var d = i - cur, a = Math.abs(d);
+      var sc = d === 0 ? 1 : .82 - (a - 1) * .06;
+      p.style.transform = 'translate(calc(-50% + ' + (d * w * .78) + 'px),-50%) scale(' + sc + ') rotate(' + (d * 6) + 'deg)';
+      p.style.opacity = a > 2 ? 0 : (d === 0 ? 1 : .85);
+      p.style.zIndex = 10 - a;
+      p.style.filter = d === 0 ? 'none' : 'saturate(.7)';
+      p.style.pointerEvents = a > 2 ? 'none' : 'auto';
+      p.querySelector('.rl-tag').style.display = d === 0 ? 'block' : 'none';
+      p.setAttribute('aria-hidden', d === 0 ? 'false' : 'true');
+    });
+    phones.forEach(function (p, i) { p.classList.toggle('is-paused', i === cur && userPaused); p.setAttribute('aria-label', i === cur ? (userPaused ? 'Reproducir ' : 'Pausar ') + p.getAttribute('data-title') : 'Ver ' + p.getAttribute('data-title')); });
+    Array.prototype.forEach.call(dots, function (x, i) { x.classList.toggle('on', i === cur); });
+    prev.disabled = cur === 0; next.disabled = cur === phones.length - 1;
+    play();
+  }
+  function go(i) { cur = Math.max(0, Math.min(phones.length - 1, i)); userPaused = false; render(); }
+  function toggle() { userPaused = !userPaused; render(); }
+  phones.forEach(function (p, i) { p.addEventListener('click', function () { if (moved) return; if (i !== cur) go(i); else toggle(); });
+    p.addEventListener('keydown', function (e) { if ((e.key === 'Enter' || e.key === ' ') && e.target === p) { e.preventDefault(); if (i !== cur) go(i); else toggle(); } }); });
+  prev.addEventListener('click', function () { go(cur - 1); });
+  next.addEventListener('click', function () { go(cur + 1); });
+  snd.addEventListener('click', function () {
+    muted = !muted; snd.textContent = muted ? '🔇' : '🔊';
+    snd.setAttribute('aria-pressed', String(!muted)); snd.setAttribute('aria-label', muted ? 'Activar sonido' : 'Silenciar');
+    play();
+  });
+  var x0 = null;
+  stage.addEventListener('pointerdown', function (e) { x0 = e.clientX; moved = false; });
+  window.addEventListener('pointerup', function (e) {
+    if (x0 === null) return; var d = e.clientX - x0; x0 = null;
+    if (Math.abs(d) > 45) { moved = true; setTimeout(function () { moved = false; }, 60); go(cur + (d < 0 ? 1 : -1)); }
+  });
+  stage.addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft') go(cur - 1); if (e.key === 'ArrowRight') go(cur + 1); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { visible = es[0].isIntersecting; play(); }, { threshold: .35 }).observe(stage);
+  } else { visible = true; }
+  window.addEventListener('resize', render);
+  render();
+})();

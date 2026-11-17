@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="style.css?v=11">
     <link rel="preload" href="fonts/DMMono-400.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="fonts/fonts.css?v=1">
-    <link rel="stylesheet" href="canvas.css?v=105">
+    <link rel="stylesheet" href="canvas.css?v=108">
 </head>
 <body>
     <a class="skip-link" href="#servicios">Saltar al contenido</a>
@@ -330,6 +330,27 @@
                     <p>Diseño de Aplicación Móvil</p>
                 </div>
             </div>
+
+            <!-- Reels -->
+            <div class="rl" id="reels">
+                <div class="rl-head">
+                    <h3 class="rl-title">Reels que <mark>enganchan</mark></h3>
+                </div>
+                <div class="rl-stage" id="rlStage">
+                    <div class="rl-phone" data-title="Efervescentes" data-sub="Farmacia Pedro Salvador">
+                        <div class="rl-scr"><video class="rl-vid" muted loop playsinline preload="none" poster="images/reel-efervescentes.jpg" data-src="videos/reels/efervescentes.mp4"></video><div class="rl-isl"></div><div class="rl-cap"><b>Efervescentes</b>Farmacia Pedro Salvador</div></div><span class="rl-tag">01/02</span>
+                    </div>
+                    <div class="rl-phone" data-title="Mitos y verdades" data-sub="MYHIXEL">
+                        <div class="rl-scr"><video class="rl-vid" muted loop playsinline preload="none" poster="images/reel-mitos.jpg" data-src="videos/reels/mitos-y-verdades.mp4"></video><div class="rl-isl"></div><div class="rl-cap"><b>Mitos y verdades</b>MYHIXEL</div></div><span class="rl-tag">02/02</span>
+                    </div>
+                </div>
+                <div class="rl-ui">
+                    <button class="rl-btn" id="rlPrev" type="button" aria-label="Reel anterior">◀</button>
+                    <div class="rl-dots" id="rlDots" aria-hidden="true"><i></i><i></i></div>
+                    <button class="rl-btn" id="rlNext" type="button" aria-label="Reel siguiente">▶</button>
+                    <button class="rl-btn rl-snd" id="rlSnd" type="button" aria-label="Activar sonido" aria-pressed="false">🔇</button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -593,6 +614,6 @@
     <script src="vendor/gsap.min.js"></script>
     <script src="vendor/ScrollTrigger.min.js"></script>
     <script src="script.js?v=20"></script>
-    <script src="canvas.js?v=42"></script>
+    <script src="canvas.js?v=44"></script>
 </body>
 </html>
