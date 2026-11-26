@@ -1252,3 +1252,13 @@ a, button, .caso-card, .vr-card, .chip, .brand { touch-action: manipulation; }
 :root[data-theme="dark"] .rl-dots i { background: #1b1b1b; }
 :root[data-theme="dark"] .rl-dots i.on { background: #f2f2f2; }
 @media (prefers-reduced-motion: reduce) { .rl-phone { transition: none; } }
+
+/* Botón de sonido del vídeo de presentación */
+.video-wrapper { position: sticky; }
+.hv-sound { position: absolute; right: max(96px, calc(50% - 680px)); bottom: calc(10vh + 16px); z-index: 3; display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; font: 500 12px/1 'DM Mono', monospace; letter-spacing: .08em; text-transform: uppercase; color: #111; background: #efd128; border: 1.5px solid #111; box-shadow: 3px 3px 0 #111; cursor: pointer; transition: transform .15s, box-shadow .15s; }
+.hv-sound:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 #111; }
+.hv-sound:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 #111; }
+.hv-sound:focus-visible { outline: 2px solid #2f7bff; outline-offset: 3px; }
+.hv-ic { width: 14px; height: 12px; background: currentColor; clip-path: polygon(0 35%,35% 35%,70% 0,70% 100%,35% 65%,0 65%); }
+.hv-sound[aria-pressed="true"] { background: #99d196; }
+@media (max-width: 768px) { .video-wrapper { position: relative; } .hv-sound { right: 32px; bottom: 12px; } }

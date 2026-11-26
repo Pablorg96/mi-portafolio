@@ -64,7 +64,7 @@
     <link rel="stylesheet" href="style.css?v=11">
     <link rel="preload" href="fonts/DMMono-400.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="fonts/fonts.css?v=1">
-    <link rel="stylesheet" href="canvas.css?v=108">
+    <link rel="stylesheet" href="canvas.css?v=109">
 </head>
 <body>
     <a class="skip-link" href="#servicios">Saltar al contenido</a>
@@ -145,9 +145,10 @@
 <!-- Video Reel -->
 <div class="video-sticky-container">
     <div class="video-wrapper">
-        <video id="heroVideo" autoplay muted loop playsinline>
-            <source src="videos/MYHIXEL_Ring.mp4" type="video/mp4">
+        <video id="heroVideo" autoplay muted loop playsinline poster="images/presentacion-poster.jpg?v=2">
+            <source src="videos/pablo-presentacion.mp4?v=4" type="video/mp4">
         </video>
+        <button type="button" class="hv-sound" id="heroSound" aria-pressed="false" aria-label="Activar el sonido del vídeo"><span class="hv-ic" aria-hidden="true"></span><span class="hv-tx">Sonido</span></button>
     </div>
 </div>
 
@@ -648,6 +649,6 @@
     <script src="vendor/gsap.min.js"></script>
     <script src="vendor/ScrollTrigger.min.js"></script>
     <script src="script.js?v=20"></script>
-    <script src="canvas.js?v=44"></script>
+    <script src="canvas.js?v=45"></script>
 </body>
 </html>
