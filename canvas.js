@@ -709,11 +709,25 @@
     var v = document.getElementById('heroVideo'), b = document.getElementById('heroSound');
     if (!v || !b) return;
     var tx = b.querySelector('.hv-tx');
-    b.addEventListener('click', function () {
-        v.muted = !v.muted;
-        if (!v.muted) { v.volume = 0.9; if (v.paused) v.play().catch(function () {}); }
+    function pintar() {
         b.setAttribute('aria-pressed', String(!v.muted));
         b.setAttribute('aria-label', v.muted ? 'Activar el sonido del vídeo' : 'Silenciar el vídeo');
         tx.textContent = v.muted ? 'Sonido' : 'Silenciar';
+    }
+    function silenciar() { if (!v.muted) { v.muted = true; pintar(); } }
+    b.addEventListener('click', function () {
+        v.muted = !v.muted;
+        if (!v.muted) { v.volume = 0.9; if (v.paused) v.play().catch(function () {}); }
+        pintar();
     });
+    /* Al bajar y dejar de ver el vídeo (o cambiar de pestaña), se silencia solo */
+    if ('IntersectionObserver' in window) {
+        var visto = false;
+        new IntersectionObserver(function (es) {
+            var ahora = es[0].intersectionRatio >= 0.3;
+            if (visto && !ahora) silenciar(); // solo al salir de pantalla, no al entrar
+            visto = ahora;
+        }, { threshold: [0, 0.3] }).observe(v);
+    }
+    document.addEventListener('visibilitychange', function () { if (document.hidden) silenciar(); });
 })();

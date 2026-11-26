@@ -85,39 +85,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Necesario para que GSAP reconozca la propiedad "scrollTrigger" en los tweens
 gsap.registerPlugin(ScrollTrigger);
 
-// Efecto hero: fondo blanco -> negro y vídeo encogiéndose ligeramente,
-// todo sincronizado en el mismo tramo de scroll (termina al 40% del scroll del hero)
-// Este efecto (encoger el vídeo + fondo a negro mientras se hace scroll)
-// solo se activa en escritorio. En mobile daba problemas de tamaño/recorte,
-// así que ahí el vídeo se queda estático, sin animación.
-let heroVideoMM = gsap.matchMedia();
-
-heroVideoMM.add("(min-width: 769px)", () => {
-    const heroVideoTl = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".video-sticky-container",
-            start: "top top",
-            end: "+=40%",
-            scrub: 0.6,
-        }
-    });
-
-    heroVideoTl
-        .to(".video-sticky-container", {
-            backgroundColor: "#000000",
-            ease: "power2.out"
-        }, 0)
-        .to(".video-wrapper video", {
-            scale: 0.9,
-            borderRadius: "24px",
-            ease: "power2.out"
-        }, 0)
-        .to(".video-wrapper", {
-            paddingLeft: "130px",
-            paddingRight: "130px",
-            ease: "power2.out"
-        }, 0);
-});
+// Vídeo de portada: estático también en escritorio (nov-2026).
+// Se quitó el efecto de encoger el vídeo + fondo a negro al hacer scroll,
+// porque el vídeo nuevo ya lleva la estética de mesa de trabajo de la web.
 
 // Reveal con blur al hacer scroll (mismo efecto que el titular del Hero),
 // aplicado a: texto de Overview + link, y título/link/tarjetas de Casos de Estudio.

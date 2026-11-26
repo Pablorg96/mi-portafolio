@@ -507,7 +507,7 @@ body.lz-on .lz-you { display: flex; }
     .chips { margin-top: 22px; gap: 12px; }
     .video-sticky-container { height: auto; padding: 4px 0 6px; }
     .video-wrapper { position: relative; height: auto; padding: 0 20px; }
-    .video-wrapper video { height: auto; aspect-ratio: 16 / 10; }
+    .video-wrapper video { height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
 }
 
 /* Cursor-punto: se oculta sobre los campos de texto */
@@ -1262,3 +1262,11 @@ a, button, .caso-card, .vr-card, .chip, .brand { touch-action: manipulation; }
 .hv-ic { width: 14px; height: 12px; background: currentColor; clip-path: polygon(0 35%,35% 35%,70% 0,70% 100%,35% 65%,0 65%); }
 .hv-sound[aria-pressed="true"] { background: #99d196; }
 @media (max-width: 768px) { .video-wrapper { position: relative; } .hv-sound { right: 32px; bottom: 12px; } }
+
+/* Vídeo de portada estático en escritorio (como en móvil): entero en 16:9, sin efecto de scroll */
+@media (min-width: 769px) {
+    .video-sticky-container { height: auto; padding: 8px 0 40px; }
+    .video-wrapper { position: relative; height: auto; overflow: visible; padding: 0 80px; }
+    .video-wrapper video { height: auto; aspect-ratio: 16 / 9; object-fit: contain; max-width: 1400px; }
+    .hv-sound { right: max(104px, calc(50% - 676px)); bottom: 24px; }
+}
